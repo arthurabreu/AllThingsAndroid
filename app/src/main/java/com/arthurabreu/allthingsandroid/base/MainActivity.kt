@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid
+package com.arthurabreu.allthingsandroid.base
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,8 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.arthurabreu.allthingsandroid.ui.theme.AllThingsAndroidTheme
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: MainViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
