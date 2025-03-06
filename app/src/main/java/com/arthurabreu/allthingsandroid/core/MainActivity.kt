@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AllThingsAndroidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
+                Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
                     val navController = rememberNavController()
 
                     // Handle navigation events from ViewModel
@@ -41,7 +42,8 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = Destination.Home.route
+                        startDestination = Destination.Home.route,
+                        modifier = Modifier.padding(paddingValues)
                     ) {
                         composable(Destination.Home.route) {
                             HomeScreen(
