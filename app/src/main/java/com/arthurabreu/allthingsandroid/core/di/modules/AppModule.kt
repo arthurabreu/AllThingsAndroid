@@ -1,6 +1,6 @@
-package com.arthurabreu.allthingsandroid.di.modules
+package com.arthurabreu.allthingsandroid.core.di.modules
 
-import com.arthurabreu.allthingsandroid.base.MainViewModel
+import com.arthurabreu.allthingsandroid.core.MainViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
