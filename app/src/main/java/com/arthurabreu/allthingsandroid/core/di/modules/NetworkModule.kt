@@ -1,8 +1,13 @@
 package com.arthurabreu.allthingsandroid.core.di.modules
 
+import com.arthurabreu.allthingsandroid.data.config.BaseUrlProvider
+import com.arthurabreu.allthingsandroid.data.config.DebugBaseUrlProvider
+import com.arthurabreu.allthingsandroid.data.error.ErrorHandler
+import com.arthurabreu.allthingsandroid.data.error.ErrorHandlerImpl
 import com.arthurabreu.allthingsandroid.data.mapper.ApiMapper
+import com.arthurabreu.allthingsandroid.data.mapper.ApiMapperImpl
 import com.arthurabreu.allthingsandroid.data.remote.ApiService
-import com.arthurabreu.allthingsandroid.data.remote.KtorApiServiceImpl
+import com.arthurabreu.allthingsandroid.data.remote.ApiServiceKtorImpl
 import com.arthurabreu.allthingsandroid.domain.repos.ApiRepository
 import com.arthurabreu.allthingsandroid.domain.repos.ApiRepositoryImpl
 import io.ktor.client.HttpClient
@@ -36,8 +41,9 @@ val networkModule = module {
             }
         }
     }
-
-    single<ApiService> { KtorApiServiceImpl(get()) }
-    factory { ApiMapper() }
-    single<ApiRepository> { ApiRepositoryImpl(get(), get()) }
+    single<BaseUrlProvider> { DebugBaseUrlProvider() }
+    single<ApiService> { ApiServiceKtorImpl(get(), get()) }
+    single<ErrorHandler> { ErrorHandlerImpl() }
+    single<ApiMapper> { ApiMapperImpl() }
+    single<ApiRepository> { ApiRepositoryImpl(get(), get(), get()) }
 }

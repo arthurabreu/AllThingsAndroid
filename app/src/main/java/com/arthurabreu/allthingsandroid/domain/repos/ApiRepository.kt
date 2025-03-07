@@ -4,7 +4,6 @@ import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 
 interface ApiRepository {
     suspend fun getData(): DomainModel
-//    suspend fun postData(data: DomainModel): Result<Unit>
 }
 
 // Example Test
