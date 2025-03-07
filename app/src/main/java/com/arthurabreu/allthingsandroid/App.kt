@@ -2,6 +2,7 @@ package com.arthurabreu.allthingsandroid
 
 import android.app.Application
 import com.arthurabreu.allthingsandroid.core.di.modules.appModule
+import com.arthurabreu.allthingsandroid.core.di.modules.networkModule
 import com.arthurabreu.allthingsandroid.core.di.modules.screensModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,6 +18,7 @@ class App : Application(){
             modules(
                 appModule,
                 screensModule,
+                networkModule
             )
         }
     }

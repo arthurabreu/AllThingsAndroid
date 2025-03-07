@@ -3,7 +3,8 @@ package com.arthurabreu.allthingsandroid.core.di.modules
 import com.arthurabreu.allthingsandroid.core.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigatorImpl
-import org.koin.core.module.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+
 import org.koin.dsl.module
 
 val appModule = module {
