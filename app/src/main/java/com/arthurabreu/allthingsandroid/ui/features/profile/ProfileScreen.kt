@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid.ui.features.basics
+package com.arthurabreu.allthingsandroid.ui.features.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button

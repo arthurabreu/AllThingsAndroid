@@ -16,9 +16,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arthurabreu.allthingsandroid.core.MainViewModel
-import com.arthurabreu.allthingsandroid.ui.features.basics.HomeScreen
-import com.arthurabreu.allthingsandroid.ui.features.basics.ProfileScreen
-import com.arthurabreu.allthingsandroid.ui.features.basics.SettingsScreen
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.Destination
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
+import com.arthurabreu.allthingsandroid.ui.features.home.HomeScreen
+import com.arthurabreu.allthingsandroid.ui.features.profile.ProfileScreen
+import com.arthurabreu.allthingsandroid.ui.features.settings.SettingsScreen
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 
@@ -33,26 +37,22 @@ fun NavigationGraph(viewModel: MainViewModel) {
 
     Scaffold { paddingValues ->
         Surface(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(paddingValues),
             color = MaterialTheme.colorScheme.background
         ) {
             NavHost(
-                navController = navController,
-                startDestination = Destination.Home.fullRoute,
-                modifier = Modifier.padding(paddingValues)
+                navController,
+                startDestination = HomeFeature.Home.fullRoute
             ) {
-                composable(Destination.Home.fullRoute) {
-                    HomeScreen()
-                }
+                composable(HomeFeature.Home.route) { HomeScreen() }
                 composable(
-                    route = Destination.Profile.fullRoute,
+                    route = ProfileFeature.Profile.fullRoute,
                     arguments = listOf(navArgument("userId") { type = NavType.StringType })
-                ) {
-                    ProfileScreen(
-                        userId = it.arguments?.getString("userId") ?: ""
-                    )
+                ) { backStackEntry ->
+                    val userId = backStackEntry.arguments?.getString("userId").orEmpty()
+                    ProfileScreen(userId)
                 }
-                composable(Destination.Settings.fullRoute) {
+                composable(SettingsFeature.Settings.fullRoute) {
                     SettingsScreen()
                 }
             }
