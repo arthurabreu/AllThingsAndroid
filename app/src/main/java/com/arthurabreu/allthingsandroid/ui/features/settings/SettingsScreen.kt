@@ -1,15 +1,20 @@
-package com.arthurabreu.allthingsandroid.ui.features.basics
+package com.arthurabreu.allthingsandroid.ui.features.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SettingsScreen(onBack: () -> Unit) {
+fun SettingsScreen(
+    viewModel: SettingsViewModel = koinViewModel()
+) {
     Column {
         Text("Settings Screen")
-        Button(onClick = onBack) {
+        Button(
+            onClick = { viewModel.onBackButtonClicked() }
+        ) {
             Text("Back")
         }
     }
