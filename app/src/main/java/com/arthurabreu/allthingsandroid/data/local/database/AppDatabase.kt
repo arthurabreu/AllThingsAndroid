@@ -5,6 +5,9 @@ import androidx.room.RoomDatabase
 import com.arthurabreu.allthingsandroid.data.local.dao.DataDao
 import com.arthurabreu.allthingsandroid.data.local.entity.DataEntity
 
+/**
+ * Database class for the app
+ */
 @Database(
     entities = [DataEntity::class],
     version = 1,

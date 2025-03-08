@@ -13,7 +13,17 @@ interface DataMapper {
     fun dataEntityToDomainData(entity: DataEntity): DomainData
     fun domainModelToDomainData(domainModel: DomainModel): DomainData
 }
-
+/**
+ * DataMapperImpl is responsible for converting data between different layers of the application.
+ * It implements the DataMapper interface.
+ * @see DataMapper
+ * @see DomainModel
+ * @see DomainData
+ * @see DataEntity
+ * @see ApiDto
+ * @see DomainException
+ * @see DataMapperImpl
+ */
 class DataMapperImpl : DataMapper {
 
     // ApiDto -> DomainModel conversion

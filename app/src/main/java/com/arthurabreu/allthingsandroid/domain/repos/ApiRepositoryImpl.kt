@@ -4,10 +4,25 @@ import android.util.Log
 import com.arthurabreu.allthingsandroid.data.error.ErrorHandler
 import com.arthurabreu.allthingsandroid.data.mapper.ApiMapper
 import com.arthurabreu.allthingsandroid.data.mapper.DataMapper
-import com.arthurabreu.allthingsandroid.data.remote.ApiService
+import com.arthurabreu.allthingsandroid.data.remote.api.ApiService
 import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
 
+/**
+ * Repository implementation that fetches data from the API
+ * and maps it to the DomainModel
+ * @param service the service that fetches the data
+ * @param mapper the mapper that maps the DTO to the DomainModel
+ * @param dataMapper the mapper that maps the DomainModel to the DomainData
+ * @param errorHandler the error handler that handles exceptions
+ * @param dataUseCases the use cases that interact with the local database
+ * @see ApiRepository
+ * @see ApiService
+ * @see ApiMapper
+ * @see DataMapper
+ * @see ErrorHandler
+ * @see DataUseCases
+ */
 class ApiRepositoryImpl(
     private val service: ApiService,
     private val mapper: ApiMapper,

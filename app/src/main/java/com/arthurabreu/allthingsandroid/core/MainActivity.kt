@@ -8,6 +8,9 @@ import com.arthurabreu.allthingsandroid.core.navigation.NavigationGraph
 import com.arthurabreu.allthingsandroid.ui.theme.AllThingsAndroidTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/*
+    * MainActivity is the entry point of the application.
+ */
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModel()

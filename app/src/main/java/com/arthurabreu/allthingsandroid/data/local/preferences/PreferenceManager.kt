@@ -9,6 +9,12 @@ import kotlinx.coroutines.flow.map
 
 /**
  * Manages user preferences, including the last update time, via DataStore.
+ * @param dataStore DataStore instance to store preferences.
+ * @property LAST_UPDATE_KEY Key to store the last update time.
+ * @property lastUpdateTime Flow to observe the last update time.
+ * @constructor Creates a PreferencesManager.
+ * @property updateLastUpdateTime Updates the last update time.
+ * @property time New last update time.
  */
 class PreferencesManager(private val dataStore: DataStore<Preferences>) {
     private val LAST_UPDATE_KEY = longPreferencesKey("last_update_time")

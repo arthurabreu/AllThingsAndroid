@@ -39,8 +39,6 @@ class HomeViewModel(
     init {
         _userdata.value = "user123" // Data to pass through arguments to other destinations
         Log.d("MainViewModel", "MainViewModel created")
-
-
         loadApiData() // Load data from api and saves in the db
     }
 

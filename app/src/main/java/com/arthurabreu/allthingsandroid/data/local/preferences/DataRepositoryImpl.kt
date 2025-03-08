@@ -8,6 +8,33 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
+/*
+    * DataRepositoryImpl is the implementation of the DataRepository interface.
+    * It is responsible for handling the data flow between the local database and the view model.
+    * It uses the AppDatabaseImpl, DataMapper and PreferencesManager to interact with the database and preferences.
+    * It also uses the DomainData model to represent the data.
+    * It implements the functions defined in the DataRepository interface.
+    * It uses the Flow class to handle continuous observation of the data.
+    * It uses the suspend keyword to handle asynchronous operations.
+    * It uses the first() function to get the first element of a flow.
+    * It uses the map() function to transform the data from one type to another.
+    * It uses the let() function to execute a block of code if the object is not null.
+    * It uses the ?: operator to provide a default value if the object is null.
+    * It uses the updateLastUpdateTime() function to update the last update time in the preferences.
+    * It uses the clearCache() function to clear the cache in the database.
+    * It uses the deleteDataById() function to delete data by id in the database.
+    * It uses the updateData() function to update data in the database.
+    * It uses the saveData() function to save data in the database.
+    * It uses the getLastUpdateTime() function to get the last update time from the preferences.
+    * It uses the getLocalDataOnce() function to get the local data once from the database.
+    * It uses the getLocalDataStream() function to get the local data stream from the database.
+    * It uses the getDataById() function to get data by id from the database.
+    * It uses the DomainData model to represent the data.
+    * It uses the DataEntity model to represent the data.
+    * It uses the DataMapper to map data between the domain and entity layers.
+    * It uses the PreferencesManager to handle preferences operations.
+    * It uses the AppDatabaseImpl to interact with the local database.
+ */
 class DataRepositoryImpl(
     private val appDatabaseImpl: AppDatabaseImpl,
     private val dataMapper: DataMapper,

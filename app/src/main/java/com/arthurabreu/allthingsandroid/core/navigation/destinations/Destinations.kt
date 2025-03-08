@@ -1,5 +1,9 @@
 package com.arthurabreu.allthingsandroid.core.navigation.destinations
 
+/**
+ * Destinations are used to navigate between screens.
+ * Each destination has a route and optional parameters.
+ */
 sealed class Destination(
     val route: String,
     vararg val params: String

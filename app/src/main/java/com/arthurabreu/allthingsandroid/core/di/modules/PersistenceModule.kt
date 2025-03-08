@@ -18,6 +18,18 @@ import org.koin.dsl.module
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
+/*
+    * Module responsible for providing all the dependencies related to persistence
+    * This module provides the following dependencies:
+    * - AppDatabase: The Room database instance
+    * - DataDao: The DAO for the Room database
+    * - AppDatabaseImpl: The implementation of the AppDatabase interface
+    * - DataStore: The DataStore instance for saving key-value pairs
+    * - PreferencesManager: The manager for the DataStore
+    * - DataRepository: The repository for the DataStore
+    * - DataMapper: The mapper for converting data between layers
+    * - DataUseCases: The use cases for the data layer
+ */
 val persistenceModule = module {
     single {
         Room.databaseBuilder(

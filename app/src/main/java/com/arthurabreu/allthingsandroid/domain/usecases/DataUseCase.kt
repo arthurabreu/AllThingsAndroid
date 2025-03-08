@@ -4,6 +4,15 @@ import com.arthurabreu.allthingsandroid.domain.model.DomainData
 import com.arthurabreu.allthingsandroid.domain.repos.DataRepository
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Use cases for data operations
+ * @param repository Data repository
+ * @constructor Creates a DataUseCases object
+ * @property repository Data repository
+ * @see DataRepository
+ * @see DomainData
+ * @see Flow
+ */
 class DataUseCases(
     private val repository: DataRepository
 ) {
