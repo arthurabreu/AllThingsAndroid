@@ -8,32 +8,42 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeat
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.data.config.Resource
 import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
+import com.arthurabreu.allthingsandroid.domain.model.DomainData
 import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 import com.arthurabreu.allthingsandroid.domain.repos.ApiRepository
+import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val appNavigator: AppNavigator,
-    private val repository: ApiRepository
+    private val repository: ApiRepository,
+    private val useCases: DataUseCases
 ) : ViewModel() {
 
     private val _userdata = MutableStateFlow("")
     val userdata: StateFlow<String?> = _userdata
 
-    private val _data = MutableStateFlow<Resource<DomainModel>>(Resource.Loading)
-    val data: StateFlow<Resource<DomainModel>> = _data
+    private val _apiData = MutableStateFlow<Resource<DomainModel>>(Resource.Loading)
+    val apiData: StateFlow<Resource<DomainModel>> = _apiData
 
+    /* The Db State.
+         This is the state that the UI will observe to get the latest data from the database.
+         It will be updated by the ViewModel when the data changes.
+     */
+    private val _dataState = MutableStateFlow<Resource<DomainData>>(Resource.Loading)
+    val dataState: StateFlow<Resource<DomainData>> = _dataState
 
     init {
-        _userdata.value = "user123"
+        _userdata.value = "user123" // Data to pass through arguments to other destinations
         Log.d("MainViewModel", "MainViewModel created")
-        loadData()
+        loadApiData() // Load data from api and saves in the db
     }
 
     fun onProfileClick() {
-        when (val currentData = _data.value) {
+        when (val currentData = _apiData.value) {
             is Resource.Success -> {
                 val userId = currentData.data.userId.toString() // Assuming userId in DomainModel
                 val route = ProfileFeature.Profile(userId = userId)
@@ -54,16 +64,47 @@ class HomeViewModel(
         appNavigator.tryNavigateTo(SettingsFeature.Settings.route)
     }
 
-    private fun loadData() {
+    private fun loadApiData() {
         viewModelScope.launch {
-            _data.value = Resource.Loading
+            _apiData.value = Resource.Loading
             try {
                 val result = repository.getData()
-                _data.value = Resource.Success(result)
+                _apiData.value = Resource.Success(result)
             } catch (e: DomainException) {
-                _data.value = Resource.Error(e)
+                _apiData.value = Resource.Error(e)
             }
         }
     }
 
+   /* Persistence Operations
+      Room db, DataStore operations
+      (For single fetch)
+   */
+   private fun getLatestData() {
+       viewModelScope.launch {
+           _dataState.value = Resource.Loading
+           try {
+               val data = useCases.getLatestData()
+               _dataState.value = Resource.Success(data)
+           } catch (e: Exception) {
+               _dataState.value = Resource.Error(DomainException.UnknownError(e.message ?: "Unknown error"))
+           }
+       }
+   }
+
+    // For continuous observation
+    val observedData: Flow<DomainData> = useCases.observeData() // Observe changes in the data
 }
+
+/*
+Usages:
+// Single fetch
+viewModel.loadData()
+
+// Observe changes
+viewModel.observedData
+    .onEach { data ->
+        // Update UI with latest data
+    }
+    .launchIn(viewModelScope)
+ */

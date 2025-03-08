@@ -7,10 +7,16 @@ import io.ktor.client.plugins.ServerResponseException
 import io.ktor.utils.io.errors.IOException
 import kotlinx.serialization.SerializationException
 
+/*
+ * Interface for error handling
+ */
 interface ErrorHandler {
     fun handleError(exception: Exception): DomainException
 }
 
+/**
+ * This class is responsible for handling exceptions and returning a DomainException
+ */
 class ErrorHandlerImpl : ErrorHandler {
     override fun handleError(exception: Exception): DomainException = when (exception) {
         is SocketTimeoutException -> DomainException.TimeoutError(

@@ -5,11 +5,26 @@ import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
 import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 
 interface ApiMapper {
-    fun mapToDomain(dto: ApiDto): DomainModel
+    fun mapToDomainModel(dto: ApiDto): DomainModel
 }
 
+/**
+ * Maps an [ApiDto] to a [DomainModel]
+ * @throws DomainException.SerializationError if the mapping fails
+ * @return a [DomainModel] object
+ * @param dto the [ApiDto] to be mapped
+ * @see DomainModel
+ * @see ApiDto
+ * @see DomainException.SerializationError
+ * @see ApiMapper
+ * @see ApiMapperImpl
+ * @see ApiMapperImpl.mapToDomainModel
+ * @see ApiMapperImpl.mapToDto
+ * @see ApiMapperImpl.mapToDtoList
+ * @see ApiMapperImpl.mapToDomainModelList
+ */
 class ApiMapperImpl : ApiMapper {
-    override fun mapToDomain(dto: ApiDto): DomainModel = try {
+    override fun mapToDomainModel(dto: ApiDto): DomainModel = try {
         DomainModel(
             id = dto.id,
             userId = dto.userId,

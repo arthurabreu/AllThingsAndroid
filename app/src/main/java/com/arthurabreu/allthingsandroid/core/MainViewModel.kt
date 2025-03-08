@@ -2,16 +2,17 @@ package com.arthurabreu.allthingsandroid.core
 
 import androidx.lifecycle.ViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
-import com.arthurabreu.allthingsandroid.domain.model.DomainModel
+import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
 
-sealed class UiState {
-    data object Loading : UiState()
-    data class Success(val data: DomainModel) : UiState()
-    data class Error(val message: String) : UiState()
-}
-
+/**
+ * ViewModel for the MainFragment
+ *
+ * @param appNavigator the navigator for the app
+ * @param useCases the use cases for the app
+ */
 class MainViewModel(
-    appNavigator: AppNavigator
+    appNavigator: AppNavigator,
+    private val useCases: DataUseCases
 ) : ViewModel() {
     val navigationChannel = appNavigator.navigationChannel
 }
