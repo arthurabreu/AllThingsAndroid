@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-
 }
 
 android {
@@ -20,7 +19,18 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.2" // adjust as needed
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    // Add this block to set Kotlin's JVM target
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
+
 
 dependencies {
     implementation(commonscreenslibs.androidx.core.ktx)
@@ -34,4 +44,5 @@ dependencies {
     implementation(commonscreenslibs.androidx.ui.tooling)
     implementation(commonscreenslibs.androidx.ui.tooling.preview)
     implementation(commonscreenslibs.androidx.material3)
+    implementation(libs.koin.compose)
 }
