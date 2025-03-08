@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val appModule = module {
 
     // ViewModel example. Add get() to each dependency in constructor
-     viewModel { MainViewModel(get()) }
+     viewModel { MainViewModel(get(), get()) }
 
     // Interface example that can be used for repos, navigators, etc
     single<AppNavigator> { AppNavigatorImpl() }

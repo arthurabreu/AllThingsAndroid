@@ -3,13 +3,17 @@ package com.arthurabreu.allthingsandroid.domain.repos
 import android.util.Log
 import com.arthurabreu.allthingsandroid.data.error.ErrorHandler
 import com.arthurabreu.allthingsandroid.data.mapper.ApiMapper
+import com.arthurabreu.allthingsandroid.data.mapper.DataMapper
 import com.arthurabreu.allthingsandroid.data.remote.ApiService
 import com.arthurabreu.allthingsandroid.domain.model.DomainModel
+import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
 
 class ApiRepositoryImpl(
     private val service: ApiService,
     private val mapper: ApiMapper,
-    private val errorHandler: ErrorHandler
+    private val dataMapper: DataMapper,
+    private val errorHandler: ErrorHandler,
+    private val dataUseCases: DataUseCases
 ) : ApiRepository {
 
     override suspend fun getData(): DomainModel {
@@ -23,7 +27,11 @@ class ApiRepositoryImpl(
                 Raw JSON: $rawJson
             """.trimIndent())
 
-            mapper.mapToDomain(apiResponse)
+            val mappedModel = mapper.mapToDomainModel(apiResponse) // Maps to DomainModel, which is the app's model
+            val domainData = dataMapper.domainModelToDomainData(mappedModel) // Maps to DomainData, which is the local db model
+            dataUseCases.insertData(domainData) // Saves api data on local db for Room & Cache example
+
+            mappedModel // returns DomainModel for ui stuff
         } catch (e: Exception) {
             val rawJson = service.getRawJsonResponse()
             Log.e("Repository", """

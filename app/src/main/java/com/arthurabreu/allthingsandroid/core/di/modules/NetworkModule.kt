@@ -45,5 +45,5 @@ val networkModule = module {
     single<ApiService> { ApiServiceKtorImpl(get(), get()) }
     single<ErrorHandler> { ErrorHandlerImpl() }
     single<ApiMapper> { ApiMapperImpl() }
-    single<ApiRepository> { ApiRepositoryImpl(get(), get(), get()) }
+    single<ApiRepository> { ApiRepositoryImpl(get(), get(), get(), get(), get()) }
 }

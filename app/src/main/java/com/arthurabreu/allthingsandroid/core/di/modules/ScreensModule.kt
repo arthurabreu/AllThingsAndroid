@@ -7,7 +7,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val screensModule = module {
-    viewModel { HomeViewModel(get(), get()) }
+    viewModel { HomeViewModel(get(), get(), get()) }
     viewModel { ProfileViewmodel(get()) }
     viewModel { SettingsViewModel(get()) }
 }

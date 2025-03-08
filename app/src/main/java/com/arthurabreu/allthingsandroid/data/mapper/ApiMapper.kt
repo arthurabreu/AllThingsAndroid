@@ -5,11 +5,11 @@ import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
 import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 
 interface ApiMapper {
-    fun mapToDomain(dto: ApiDto): DomainModel
+    fun mapToDomainModel(dto: ApiDto): DomainModel
 }
 
 class ApiMapperImpl : ApiMapper {
-    override fun mapToDomain(dto: ApiDto): DomainModel = try {
+    override fun mapToDomainModel(dto: ApiDto): DomainModel = try {
         DomainModel(
             id = dto.id,
             userId = dto.userId,
