@@ -12,6 +12,13 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
+    dependencyResolutionManagement {
+        versionCatalogs {
+            create("commonscreenslibs") {
+                from(files("gradle/commonscreenslibs.versions.toml"))
+            }
+        }
+    }
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
@@ -21,3 +28,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AllThingsAndroid"
 include(":app")
+include(":commonscreens")

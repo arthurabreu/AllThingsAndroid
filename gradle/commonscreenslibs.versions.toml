@@ -1,0 +1,19 @@
+[versions]
+agp = "8.8.2"
+kotlin = "2.0.0"
+composeBomVersion = "2025.02.00"
+appcompat = "1.7.0"
+material = "1.12.0"
+
+[libraries]
+androidx-compose-bom-v20250200 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+ui = { module = "androidx.compose.ui:ui" }
+material3 = { module = "androidx.compose.material3:material3" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
