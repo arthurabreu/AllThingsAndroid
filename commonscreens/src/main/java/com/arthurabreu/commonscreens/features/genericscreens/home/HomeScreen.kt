@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 fun HomeScreen(
     onProfileClick: () -> Unit,
     onSettingsClick: () -> Unit,
+    onDownloadClick: () -> Unit,
     json: String,
 ) {
     Column {
@@ -21,6 +22,11 @@ fun HomeScreen(
             onClick = { onSettingsClick() }
         ) {
             Text("Go to Settings")
+        }
+        Button(
+            onClick = { onDownloadClick() }
+        ) {
+            Text("Go to Downloads")
         }
         Text(text = "\nDomain data from api -> db: \n\n${json}")
     }
