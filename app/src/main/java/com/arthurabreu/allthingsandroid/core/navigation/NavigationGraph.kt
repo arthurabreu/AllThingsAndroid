@@ -16,9 +16,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arthurabreu.allthingsandroid.core.MainViewModel
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
+import com.arthurabreu.allthingsandroid.ui.features.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.features.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.features.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.features.settings.SettingsScreen
@@ -53,6 +55,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(SettingsFeature.Settings.fullRoute) {
                     SettingsScreen()
+                }
+                composable(DownloadFeature.Download.fullRoute) {
+                    DownloadScreen()
                 }
             }
         }

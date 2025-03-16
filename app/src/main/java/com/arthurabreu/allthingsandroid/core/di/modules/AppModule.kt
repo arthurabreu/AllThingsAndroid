@@ -6,6 +6,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.AppNavigatorImpl
 import com.arthurabreu.allthingsandroid.services.MyRepository
 import com.arthurabreu.allthingsandroid.services.MyRepositoryImpl
 import com.arthurabreu.allthingsandroid.services.MyUseCase
+import com.arthurabreu.allthingsandroid.ui.features.download.DownloadViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 import org.koin.dsl.module
@@ -23,5 +24,7 @@ val appModule = module {
 
     single { MyUseCase(get()) }
     single<MyRepository> { MyRepositoryImpl() }
+
+    viewModel { DownloadViewModel() }
 }
 
