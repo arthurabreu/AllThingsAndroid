@@ -3,7 +3,9 @@ package com.arthurabreu.allthingsandroid.core.di.modules
 import com.arthurabreu.allthingsandroid.ui.features.home.HomeViewModel
 import com.arthurabreu.allthingsandroid.ui.features.profile.ProfileViewmodel
 import com.arthurabreu.allthingsandroid.ui.features.settings.SettingsViewModel
+import io.ktor.http.parametersOf
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 
 /*
@@ -15,7 +17,14 @@ import org.koin.dsl.module
     * The viewmodels are created using the module function from the Koin library.
  */
 val screensModule = module {
-    viewModel { HomeViewModel(get(), get(), get()) }
+    viewModel {
+        HomeViewModel(
+            get(),
+            get(),
+            get(),
+            logger = get(parameters = { parametersOf(HomeViewModel::class.java.simpleName) })
+    ) }
+
     viewModel { ProfileViewmodel(get()) }
     viewModel { SettingsViewModel(get()) }
 }
