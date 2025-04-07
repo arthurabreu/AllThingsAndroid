@@ -1,0 +1,62 @@
+DOCUMENTO TÉCNICO - SPEC DE SPIKE
+Proprietário: Arthur Abreu
+
+Última atualização em: 07 de abril de 2025
+
+Autor(es): Arthur Abreu
+
+Aprovadores: (A ser definido)
+
+Contexto
+
+O rastreamento do fluxo de execução e a identificação da origem das mensagens de log são cruciais para a depuração e manutenção de aplicativos Android, especialmente aqueles que utilizam corrotinas para operações assíncronas. A dificuldade em identificar qual método iniciou uma determinada operação assíncrona pode levar a um aumento no tempo de depuração e dificultar a compreensão do comportamento do sistema.
+
+Objetivos
+
+O objetivo desta tarefa de spike é implementar uma solução de logging aprimorada que permita:
+
+Registrar automaticamente o início, a conclusão e a falha da execução de blocos de código.
+Identificar automaticamente o método ou a corrotina (especialmente dentro de ViewModels) que iniciou a execução.
+Fornecer informações de contexto através de trechos relevantes da stack trace nas mensagens de log.
+Ser facilmente utilizável em diferentes partes do aplicativo, incluindo ViewModels e outros componentes.
+Não-Objetivos
+
+Substituir completamente a infraestrutura de logging existente (Android Log).
+Realizar otimizações de performance extremas para o processo de obtenção do caller neste momento.
+Implementar funcionalidades avançadas de logging, como agregação de logs ou envio para serviços externos (o foco é na melhoria da informação local).
+Requisitos
+
+A solução deve permitir o registro de logs no início, sucesso e falha de um bloco de código.
+Deve ser capaz de identificar o nome do método ou da corrotina que invocou o bloco de código.
+Para blocos de código executados dentro de corrotinas em ViewModels, o log deve idealmente mostrar o invokeSuspend da corrotina.
+As mensagens de log devem incluir um trecho relevante da stack trace para fornecer contexto.
+A solução deve ser reutilizável em diferentes ViewModels e outros componentes do aplicativo.
+Proposta de solução
+
+A solução proposta envolve a criação de um conjunto de classes e funções em Kotlin para facilitar o logging com informações do caller. Os principais componentes são:
+
+logExecution (função suspend inline): Uma função de extensão que recebe uma instância de Logger e um bloco de código suspensível. Ela registra o início da execução, executa o bloco e registra a conclusão ou falha, utilizando o CallerResolver para obter informações sobre o método chamador.
+
+CallerResolver (objeto): Um objeto singleton responsável por analisar a stack trace do thread atual e identificar o método ou a corrotina relevante que iniciou a execução. Ele filtra a stack trace para encontrar métodos dentro do pacote da aplicação, com tratamento especial para identificar o invokeSuspend de corrotinas em ViewModels.
+
+Logger (interface): Uma interface que define os métodos padrão de logging (verbose, debug, info, warning, error) com suporte para mensagens e atributos opcionais.
+
+ClassLogger (classe): Uma implementação da interface Logger que utiliza a classe android.util.Log para realizar o logging. Ela formata as mensagens de log para incluir o nome da classe (usado como tag), o método chamador (obtido do CallerResolver) e quaisquer atributos fornecidos.
+
+Fluxo de execução:
+
+Em um ViewModel (ou outro componente), ao executar uma operação que se deseja logar, o desenvolvedor envolverá o bloco de código com a função logExecution, passando uma instância do Logger (obtida via injeção de dependência, por exemplo).
+A função logExecution primeiro chama CallerResolver.getCallerInfo() para obter informações sobre o método ou corrotina que a invocou.
+Ela então registra uma mensagem de "Início da Execução" juntamente com as informações do caller.
+O bloco de código fornecido é executado.
+Após a execução bem-sucedida do bloco, logExecution chama novamente CallerResolver.getCallerInfo() e registra uma mensagem de "Execução Concluída".
+Se ocorrer uma exceção dentro do bloco, logExecution captura a exceção, chama CallerResolver.getCallerInfo() e registra uma mensagem de "Falha na Execução" juntamente com a exceção. A exceção é então re-lançada para que não seja silenciosamente ignorada.
+Propostas estudadas e descartadas
+
+Passar o nome do método manualmente: Inicialmente, considerou-se a possibilidade de passar o nome do método explicitamente como um parâmetro para a função de logging. No entanto, essa abordagem foi descartada por não ser automática e exigir mais esforço do desenvolvedor para garantir a precisão.
+Utilizar apenas o nome da classe como caller: Outra opção seria utilizar apenas o nome da classe para identificar a origem do log. No entanto, isso não forneceria informações suficientes sobre qual método específico iniciou a operação.
+Analisar a stack trace para obter apenas o nome do método: A primeira implementação do CallerResolver tentou obter apenas o nome do método chamador. No entanto, isso se mostrou insuficiente para identificar corretamente o invokeSuspend de corrotinas em ViewModels, levando à necessidade de capturar um trecho mais informativo da stack trace.
+Links Úteis e Referências
+
+Android Log class https://developer.android.com/reference/android/util/Log
+Kotlin Coroutines https://kotlinlang.org/docs/coroutines-overview.html
