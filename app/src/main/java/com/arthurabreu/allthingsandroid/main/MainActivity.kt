@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid.core
+package com.arthurabreu.allthingsandroid.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,8 +13,6 @@ import com.arthurabreu.allthingsandroid.services.MyWorker
 import com.arthurabreu.allthingsandroid.ui.theme.AllThingsAndroidTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*

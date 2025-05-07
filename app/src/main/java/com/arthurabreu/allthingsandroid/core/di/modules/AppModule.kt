@@ -1,6 +1,6 @@
 package com.arthurabreu.allthingsandroid.core.di.modules
 
-import com.arthurabreu.allthingsandroid.core.MainViewModel
+import com.arthurabreu.allthingsandroid.main.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigatorImpl
 import com.arthurabreu.allthingsandroid.services.MyRepository
