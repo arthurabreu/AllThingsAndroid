@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+<!--    This is the general permission required to use foreground services.-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<!--    This is the specific permission required for foreground services of type dataSync on Android 15 (API 35) and later.-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
 
     <application
         android:name=".App"
