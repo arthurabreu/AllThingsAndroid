@@ -33,10 +33,10 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        val workRequest = OneTimeWorkRequestBuilder<MyWorker>().build()
-        WorkManager.getInstance(this).enqueue(workRequest)
-
-        val serviceIntent = Intent(this@MainActivity, MyService::class.java)
-        startForegroundService(serviceIntent)
+//        val workRequest = OneTimeWorkRequestBuilder<MyWorker>().build()
+//        WorkManager.getInstance(this).enqueue(workRequest)
+//
+//        val serviceIntent = Intent(this@MainActivity, MyService::class.java)
+//        startForegroundService(serviceIntent)
     }
 }
