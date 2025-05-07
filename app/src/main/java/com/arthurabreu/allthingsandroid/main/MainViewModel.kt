@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid.core
+package com.arthurabreu.allthingsandroid.main
 
 import androidx.lifecycle.ViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
