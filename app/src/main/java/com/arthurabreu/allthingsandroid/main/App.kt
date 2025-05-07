@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid
+package com.arthurabreu.allthingsandroid.main
 
 import android.app.Application
 import com.arthurabreu.allthingsandroid.core.di.modules.appModule
