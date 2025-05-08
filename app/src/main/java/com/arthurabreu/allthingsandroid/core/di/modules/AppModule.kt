@@ -8,6 +8,7 @@ import com.arthurabreu.allthingsandroid.services.MyRepositoryImpl
 import com.arthurabreu.allthingsandroid.services.MyUseCase
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import com.arthurabreu.allthingsandroid.utils.logger.Logger
+import com.arthurabreu.allthingsandroid.ui.features.download.DownloadViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 import org.koin.dsl.module
@@ -28,5 +29,9 @@ val appModule = module {
 
     factory { (className: String) -> ClassLogger(className) }
     single<Logger> { ClassLogger("MyClass") }
+
+    viewModel { DownloadViewModel() }
+
+    viewModel { DownloadViewModel() }
 }
 
