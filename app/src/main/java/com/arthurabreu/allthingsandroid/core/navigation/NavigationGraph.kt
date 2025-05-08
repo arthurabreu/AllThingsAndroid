@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arthurabreu.allthingsandroid.main.MainViewModel
-import com.arthurabreu.allthingsandroid.core.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
