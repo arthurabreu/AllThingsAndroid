@@ -45,4 +45,7 @@ dependencies {
     implementation(commonscreenslibs.androidx.ui.tooling.preview)
     implementation(commonscreenslibs.androidx.material3)
     implementation(libs.koin.compose)
+
+    // ColorPicker
+    implementation(commonscreenslibs.colorpicker.compose)
 }
