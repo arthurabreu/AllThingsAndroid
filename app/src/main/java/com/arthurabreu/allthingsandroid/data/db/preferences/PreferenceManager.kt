@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid.data.local.preferences
+package com.arthurabreu.allthingsandroid.data.db.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

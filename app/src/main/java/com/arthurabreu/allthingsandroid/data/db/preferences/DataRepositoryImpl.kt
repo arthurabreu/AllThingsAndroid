@@ -1,6 +1,6 @@
-package com.arthurabreu.allthingsandroid.data.local.preferences
+package com.arthurabreu.allthingsandroid.data.db.preferences
 
-import com.arthurabreu.allthingsandroid.data.local.database.AppDatabaseImpl
+import com.arthurabreu.allthingsandroid.data.db.database.AppDatabaseImpl
 import com.arthurabreu.allthingsandroid.data.mapper.DataMapper
 import com.arthurabreu.allthingsandroid.domain.model.DomainData
 import com.arthurabreu.allthingsandroid.domain.repos.DataRepository

@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid.data.local.entity
+package com.arthurabreu.allthingsandroid.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

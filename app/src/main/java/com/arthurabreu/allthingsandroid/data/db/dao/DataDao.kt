@@ -1,11 +1,11 @@
-package com.arthurabreu.allthingsandroid.data.local.dao
+package com.arthurabreu.allthingsandroid.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.arthurabreu.allthingsandroid.data.local.entity.DataEntity
+import com.arthurabreu.allthingsandroid.data.db.entity.DataEntity
 import kotlinx.coroutines.flow.Flow
 
 /**

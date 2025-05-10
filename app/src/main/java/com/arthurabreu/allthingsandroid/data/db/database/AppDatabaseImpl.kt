@@ -1,6 +1,6 @@
-package com.arthurabreu.allthingsandroid.data.local.database
+package com.arthurabreu.allthingsandroid.data.db.database
 
-import com.arthurabreu.allthingsandroid.data.local.entity.DataEntity
+import com.arthurabreu.allthingsandroid.data.db.entity.DataEntity
 import com.arthurabreu.allthingsandroid.data.mapper.DataMapper
 import com.arthurabreu.allthingsandroid.domain.model.DomainData
 import kotlinx.coroutines.flow.Flow

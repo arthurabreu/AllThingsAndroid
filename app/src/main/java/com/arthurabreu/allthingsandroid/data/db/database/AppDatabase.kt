@@ -1,9 +1,9 @@
-package com.arthurabreu.allthingsandroid.data.local.database
+package com.arthurabreu.allthingsandroid.data.db.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.arthurabreu.allthingsandroid.data.local.dao.DataDao
-import com.arthurabreu.allthingsandroid.data.local.entity.DataEntity
+import com.arthurabreu.allthingsandroid.data.db.dao.DataDao
+import com.arthurabreu.allthingsandroid.data.db.entity.DataEntity
 
 /**
  * Database class for the app

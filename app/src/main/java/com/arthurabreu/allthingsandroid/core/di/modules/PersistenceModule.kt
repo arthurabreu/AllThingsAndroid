@@ -5,10 +5,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.room.Room
-import com.arthurabreu.allthingsandroid.data.local.database.AppDatabase
-import com.arthurabreu.allthingsandroid.data.local.database.AppDatabaseImpl
-import com.arthurabreu.allthingsandroid.data.local.preferences.DataRepositoryImpl
-import com.arthurabreu.allthingsandroid.data.local.preferences.PreferencesManager
+import com.arthurabreu.allthingsandroid.data.db.database.AppDatabase
+import com.arthurabreu.allthingsandroid.data.db.database.AppDatabaseImpl
+import com.arthurabreu.allthingsandroid.data.db.preferences.DataRepositoryImpl
+import com.arthurabreu.allthingsandroid.data.db.preferences.PreferencesManager
 import com.arthurabreu.allthingsandroid.data.mapper.DataMapper
 import com.arthurabreu.allthingsandroid.data.mapper.DataMapperImpl
 import com.arthurabreu.allthingsandroid.domain.repos.DataRepository

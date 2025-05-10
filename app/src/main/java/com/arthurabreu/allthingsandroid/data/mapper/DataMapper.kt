@@ -1,6 +1,6 @@
 package com.arthurabreu.allthingsandroid.data.mapper
 
-import com.arthurabreu.allthingsandroid.data.local.entity.DataEntity
+import com.arthurabreu.allthingsandroid.data.db.entity.DataEntity
 import com.arthurabreu.allthingsandroid.data.remote.dto.ApiDto
 import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
 import com.arthurabreu.allthingsandroid.domain.model.DomainData
