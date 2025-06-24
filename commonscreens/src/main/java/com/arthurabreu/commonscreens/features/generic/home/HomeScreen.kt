@@ -1,4 +1,4 @@
-package com.arthurabreu.commonscreens.features.genericscreens.home
+package com.arthurabreu.commonscreens.features.generic.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
@@ -10,6 +10,7 @@ fun HomeScreen(
     onProfileClick: () -> Unit,
     onSettingsClick: () -> Unit,
     onDownloadClick: () -> Unit,
+    onButtonsClick: () -> Unit,
     json: String,
 ) {
     Column {
@@ -27,6 +28,11 @@ fun HomeScreen(
             onClick = { onDownloadClick() }
         ) {
             Text("Go to Downloads")
+        }
+        Button(
+            onClick = { onButtonsClick() }
+        ) {
+            Text("Go to Buttons Example")
         }
         Text(text = "\nDomain data from api -> db: \n\n${json}")
     }

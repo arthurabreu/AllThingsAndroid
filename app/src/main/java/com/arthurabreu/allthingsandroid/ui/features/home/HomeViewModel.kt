@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
@@ -73,6 +74,10 @@ class HomeViewModel(
 
     fun onDownloadClick() {
         appNavigator.tryNavigateTo(DownloadFeature.Download.route)
+    }
+
+    fun onButtonsClick () {
+        appNavigator.tryNavigateTo(ButtonsFeature.Buttons.route)
     }
 
     private fun loadApiData() {
