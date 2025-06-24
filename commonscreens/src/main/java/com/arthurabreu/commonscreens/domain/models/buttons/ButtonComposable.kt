@@ -43,7 +43,7 @@ fun ButtonComposable(state: AllButtonStates) {
 private fun ButtonContent(
     state: AllButtonStates
 ) {
-    state.icon?.let {
+    state.iconLeft?.let {
         Icon(
             imageVector = it,
             contentDescription = state.iconDescription,
@@ -57,7 +57,7 @@ private fun ButtonContent(
         color = state.colors.contentColor
     )
     Spacer(Modifier.width(ButtonDefaults.IconSpacing))
-    state.icon?.let {
+    state.iconRight?.let {
         Icon(
             imageVector = it,
             contentDescription = state.iconDescription,
@@ -73,8 +73,8 @@ private fun ButtonContent(
 fun BetterButtonComposablePreview() {
     ButtonComposable(
         state = AllButtonStates(
-            text = stringResource(R.string.clique_aqui),
-            icon = Icons.Filled.Favorite,
+            text = stringResource(R.string.click_here),
+            iconLeft = Icons.Filled.Favorite,
             iconDescription = "Favorite",
             onClick = {},
             enabled = true,
