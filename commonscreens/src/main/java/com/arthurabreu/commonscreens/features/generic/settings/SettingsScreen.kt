@@ -1,4 +1,4 @@
-package com.arthurabreu.commonscreens.features.genericscreens.settings
+package com.arthurabreu.commonscreens.features.generic.settings
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button

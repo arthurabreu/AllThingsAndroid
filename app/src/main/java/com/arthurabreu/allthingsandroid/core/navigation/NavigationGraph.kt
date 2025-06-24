@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.main.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
@@ -24,6 +25,7 @@ import com.arthurabreu.allthingsandroid.ui.features.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.features.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.features.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.features.settings.SettingsScreen
+import com.arthurabreu.commonscreens.domain.models.buttons.ButtonExampleScreen
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 
@@ -58,6 +60,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(DownloadFeature.Download.fullRoute) {
                     DownloadScreen()
+                }
+                composable(ButtonsFeature.Buttons.fullRoute) {
+                    ButtonExampleScreen()
                 }
             }
         }
