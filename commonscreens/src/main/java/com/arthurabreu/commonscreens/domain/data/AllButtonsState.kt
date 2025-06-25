@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-data class AllButtonStates(
+data class AllButtonsState(
     val text: String,
     val onClick: () -> Unit,
     val enabled: Boolean = true,

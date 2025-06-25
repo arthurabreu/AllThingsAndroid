@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.data.config.Resource
@@ -78,6 +79,10 @@ class HomeViewModel(
 
     fun onButtonsClick () {
         appNavigator.tryNavigateTo(ButtonsFeature.Buttons.route)
+    }
+
+    fun onListsClick () {
+        appNavigator.tryNavigateTo(ListsFeature.Lists.route)
     }
 
     private fun loadApiData() {

@@ -19,6 +19,7 @@ fun HomeScreen(
         onSettingsClick = { viewModel.onSettingsClick() },
         onDownloadClick = { viewModel.onDownloadClick() },
         onButtonsClick = { viewModel.onButtonsClick() },
+        onListsClick = { viewModel.onListsClick() },
         json = domainData.value.toString()
     )
 }

@@ -37,17 +37,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.arthurabreu.allthingsandroid.commonscreens.R
-import com.arthurabreu.commonscreens.domain.data.AllButtonStates
+import com.arthurabreu.commonscreens.domain.data.AllButtonsState
 
 object ButtonStatesProvider {
     @Composable
-    fun getAllButtonStates(): List<AllButtonStates> = listOf(
+    fun getAllButtonStates(): List<AllButtonsState> = listOf(
         // Submit Button with default colors
         buttonWithDefaultColors(),
         // Submit Button with custom colors
         buttonWithCustomColors(),
         // Standard button with MaterialTheme colors
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.exit_to_app),
             onClick = { },
             iconRight = Icons.AutoMirrored.Filled.ExitToApp,
@@ -60,7 +60,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with send icon
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.send),
             onClick = { },
             iconRight = Icons.AutoMirrored.Filled.Send,
@@ -73,7 +73,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with rounded borders
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.favorite),
             onClick = { },
             iconRight = Icons.Filled.Favorite,
@@ -86,10 +86,9 @@ object ButtonStatesProvider {
             // Add .clip(RoundedCornerShape(50)) in the Composable if you want rounded borders
             modifier = Modifier
                 .clip(RoundedCornerShape(50))
-
         ),
         // Button with square borders
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.like),
             onClick = { },
             iconRight = Icons.Filled.ThumbUp,
@@ -104,7 +103,7 @@ object ButtonStatesProvider {
                 .clip(RoundedCornerShape(0.dp))
         ),
         // Text Button Only
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.just_text),
             onClick = { },
             iconRight = null,
@@ -117,7 +116,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Loading Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.loading),
             onClick = { },
             iconRight = Icons.Filled.Build, // Changed to a more generic loading icon
@@ -131,7 +130,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Disabled Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.deactivated),
             onClick = { },
             iconRight = null,
@@ -147,7 +146,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Secondary Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.secondary),
             onClick = { },
             iconRight = Icons.Filled.AccountBox,
@@ -160,7 +159,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Dark shade Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.dark_tones),
             onClick = { },
             iconRight = Icons.Filled.ThumbUp,
@@ -173,7 +172,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Light shade Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.clear_tones),
             onClick = { },
             iconRight = Icons.Filled.ArrowDropDown,
@@ -186,7 +185,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with elevation
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.with_elevation),
             onClick = { },
             iconRight = Icons.Filled.Call,
@@ -199,7 +198,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button without elevation
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.without_elevation),
             onClick = { },
             iconRight = Icons.Filled.AccountCircle,
@@ -212,7 +211,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with icon on the left
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.icon_on_the_left), // Make sure this string resource exists
             onClick = { },
             iconLeft = Icons.Filled.Face,
@@ -225,7 +224,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with icon on the right
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.icon_on_the_right), // Make sure this string resource exists
             onClick = { },
             iconRight = Icons.Filled.MoreVert,
@@ -238,7 +237,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with different sizes - Big
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.big), // Make sure this string resource exists
             onClick = { },
             iconRight = Icons.Filled.Notifications,
@@ -251,7 +250,7 @@ object ButtonStatesProvider {
             modifier = Modifier.size(200.dp, 56.dp)
         ),
         // Button with different sizes - Small
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.small), // Make sure this string resource exists
             onClick = { },
             iconRight = null,
@@ -264,7 +263,7 @@ object ButtonStatesProvider {
             modifier = Modifier.size(100.dp, 36.dp)
         ),
         // Disabled Button with Icon
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.disabled), // Reusing existing, consider a more specific one
             onClick = { },
             iconRight = Icons.Filled.Delete,
@@ -280,7 +279,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with blue border and text
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.blue_border), // Make sure this string resource exists
             onClick = { },
             iconRight = null,
@@ -295,7 +294,7 @@ object ButtonStatesProvider {
                 .border(width = 2.dp, color = Color(0xFF2196F3), shape = RoundedCornerShape(8.dp))
         ),
         // Button with rounded corners
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.rounded_corners), // Make sure this string resource exists
             onClick = {  },
             iconRight = Icons.Filled.Done,
@@ -309,7 +308,7 @@ object ButtonStatesProvider {
                 .clip(RoundedCornerShape(64.dp))
         ),
         // Button with shadow
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.with_shadow), // Make sure this string resource exists
             onClick = { },
             iconRight = null,
@@ -323,7 +322,7 @@ object ButtonStatesProvider {
                 .shadow(12.dp, RoundedCornerShape(8.dp))
         ),
         // Button without icon
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.iconless_button), // Make sure this string resource exists
             onClick = { },
             iconRight = null,
@@ -336,7 +335,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with icon and long text
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.icon_and_long_text_button), // Make sure this string resource exists
             onClick = { },
             iconRight = Icons.Filled.ShoppingCart,
@@ -349,7 +348,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Warning Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.warning_button), 
             onClick = { },
             iconLeft = Icons.Filled.Warning,
@@ -362,7 +361,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Success Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.success_button),
             onClick = { },
             iconLeft = Icons.Filled.CheckCircle,
@@ -375,7 +374,7 @@ object ButtonStatesProvider {
             modifier = Modifier.clip(RoundedCornerShape(8.dp))
         ),
         // Info Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.info_button),
             onClick = { },
             iconLeft = Icons.Filled.Info,
@@ -388,7 +387,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Danger/Error Button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.danger_button),
             onClick = { },
             iconLeft = Icons.Filled.Close,
@@ -401,7 +400,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Outline Button - Dark
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.outline_dark_button),
             onClick = { },
             iconRight = Icons.Filled.Edit,
@@ -415,7 +414,7 @@ object ButtonStatesProvider {
                 .border(width = 1.dp, color = Color(0xFF212121), shape = RoundedCornerShape(4.dp))
         ),
         // Ghost Button (Text Only with custom color)
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.ghost_button_purple),
             onClick = { },
             iconRight = null,
@@ -428,7 +427,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Button with subtle icon color difference
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.subtle_icon_button),
             onClick = { },
             iconRight = Icons.Filled.Share,
@@ -444,7 +443,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Refresh Button - Often an Icon Button, but can be a full button
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.refresh_button),
             onClick = { },
             iconLeft = Icons.Filled.Refresh,
@@ -457,7 +456,7 @@ object ButtonStatesProvider {
             modifier = Modifier
         ),
         // Search Button - Distinct style
-        AllButtonStates(
+        AllButtonsState(
             text = stringResource(R.string.search_action_button),
             onClick = { },
             iconLeft = Icons.Filled.Search,
@@ -473,7 +472,7 @@ object ButtonStatesProvider {
 }
 
 @Composable
-fun buttonWithDefaultColors(): AllButtonStates {
+fun buttonWithDefaultColors(): AllButtonsState {
 
     // Example 1: Using MaterialTheme colors (Recommended for theming)
     val primaryButtonColors = ButtonDefaults.buttonColors(
@@ -483,7 +482,7 @@ fun buttonWithDefaultColors(): AllButtonStates {
         disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)   // Default disabled alpha
     )
 
-    return AllButtonStates(
+    return AllButtonsState(
         text = "Submit Action",
         onClick = { /* TODO: Define action */ },
         enabled = true,
@@ -497,7 +496,7 @@ fun buttonWithDefaultColors(): AllButtonStates {
 }
 
 @Composable
-fun buttonWithCustomColors(): AllButtonStates {
+fun buttonWithCustomColors(): AllButtonsState {
     // Example 2: Using custom specific colors
     val customButtonColors = ButtonDefaults.buttonColors(
         containerColor = Color(0xFF0088FF), // A custom blue
@@ -506,7 +505,7 @@ fun buttonWithCustomColors(): AllButtonStates {
         disabledContentColor = Color.LightGray
     )
 
-    return AllButtonStates(
+    return AllButtonsState(
         text = "Custom Action",
         onClick = { /* TODO: Define action */ },
         enabled = true,

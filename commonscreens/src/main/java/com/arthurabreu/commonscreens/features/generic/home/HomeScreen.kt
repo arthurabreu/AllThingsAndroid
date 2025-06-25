@@ -11,6 +11,7 @@ fun HomeScreen(
     onSettingsClick: () -> Unit,
     onDownloadClick: () -> Unit,
     onButtonsClick: () -> Unit,
+    onListsClick: () -> Unit,
     json: String,
 ) {
     Column {
@@ -33,6 +34,11 @@ fun HomeScreen(
             onClick = { onButtonsClick() }
         ) {
             Text("Go to Buttons Example")
+        }
+        Button(
+            onClick = { onListsClick() }
+        ) {
+            Text("Go to Lists Example")
         }
         Text(text = "\nDomain data from api -> db: \n\n${json}")
     }
