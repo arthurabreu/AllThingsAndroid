@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,10 +20,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arthurabreu.allthingsandroid.commonscreens.R
-import com.arthurabreu.commonscreens.domain.data.AllButtonStates
+import com.arthurabreu.commonscreens.domain.data.AllButtonsState
 
 @Composable
-fun ButtonComposable(state: AllButtonStates) {
+fun ButtonComposable(state: AllButtonsState) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
@@ -41,7 +42,7 @@ fun ButtonComposable(state: AllButtonStates) {
 
 @Composable
 private fun ButtonContent(
-    state: AllButtonStates
+    state: AllButtonsState
 ) {
     state.iconLeft?.let {
         Icon(
@@ -64,7 +65,6 @@ private fun ButtonContent(
             modifier = Modifier.size(ButtonDefaults.IconSize),
             tint = state.colors.contentColor
         )
-
     }
 }
 
@@ -72,9 +72,10 @@ private fun ButtonContent(
 @Composable
 fun BetterButtonComposablePreview() {
     ButtonComposable(
-        state = AllButtonStates(
+        state = AllButtonsState(
             text = stringResource(R.string.click_here),
             iconLeft = Icons.Filled.Favorite,
+            iconRight = Icons.Filled.Delete,
             iconDescription = "Favorite",
             onClick = {},
             enabled = true,
