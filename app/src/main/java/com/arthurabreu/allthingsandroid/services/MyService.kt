@@ -9,7 +9,7 @@ import android.os.IBinder
 import android.os.PowerManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import com.arthurabreu.allthingsandroid.main.MainActivity
+import com.arthurabreu.allthingsandroid.ui.screen.main.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
