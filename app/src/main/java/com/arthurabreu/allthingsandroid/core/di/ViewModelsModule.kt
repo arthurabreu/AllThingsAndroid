@@ -1,6 +1,7 @@
 package com.arthurabreu.allthingsandroid.core.di
 
 import com.arthurabreu.allthingsandroid.ui.viewmodel.home.HomeViewModel
+import com.arthurabreu.allthingsandroid.ui.viewmodel.login.LoginViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.profile.ProfileViewmodel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,7 +16,7 @@ import org.koin.dsl.module
     * The viewmodels are created using the get function from the Koin library.
     * The viewmodels are created using the module function from the Koin library.
  */
-val screensModule = module {
+val viewModelsModule = module {
     viewModel {
         HomeViewModel(
             get(),
@@ -26,4 +27,5 @@ val screensModule = module {
 
     viewModel { ProfileViewmodel(get()) }
     viewModel { SettingsViewModel(get()) }
+    viewModel { LoginViewModel() }
 }

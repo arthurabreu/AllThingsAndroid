@@ -20,14 +20,19 @@ import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.screen.home.HomeScreen
+import com.arthurabreu.allthingsandroid.ui.screen.login.LoginScreen
 import com.arthurabreu.allthingsandroid.ui.screen.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.screen.settings.SettingsScreen
 import com.arthurabreu.commonscreens.ui.screens.buttons.ButtonScreen
 import com.arthurabreu.commonscreens.ui.screens.lists.ListsScreen
+import com.arthurabreu.commonscreens.ui.screens.login.LoginScreenFake
+import com.arthurabreu.commonscreens.ui.screens.textfields.AllTextFieldsScreen
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 
@@ -68,6 +73,15 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(ListsFeature.Lists.fullRoute)  {
                     ListsScreen()
+                }
+                composable(LoginFeature.Logins.fullRoute)  {
+                    LoginScreen()
+                }
+                composable(LoginFeature.LoginFake.fullRoute)  {
+                    LoginScreenFake()
+                }
+                composable(TextFieldsFeature.TextFields.fullRoute)  {
+                    AllTextFieldsScreen()
                 }
             }
         }

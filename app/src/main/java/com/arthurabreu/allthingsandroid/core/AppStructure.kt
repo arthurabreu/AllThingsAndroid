@@ -63,7 +63,7 @@ package com.arthurabreu.allthingsandroid.core
 //├── ui/                              // (Alternativa se não organizar por features, ou para UI compartilhada)
 //│   ├── screen/                      // (Se não estiver dentro de features/)
 //│   │   ├── SplashScreen.kt
-//│   │   └── LoginScreen.kt
+//│   │   └── LoginComposable.kt
 //│   ├── viewmodel/                   // (Se não estiver dentro de features/)
 //│   │   ├── SplashViewModel.kt
 //│   │   └── LoginViewModel.kt

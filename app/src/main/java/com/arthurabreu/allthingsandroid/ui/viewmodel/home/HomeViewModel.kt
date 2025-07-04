@@ -7,8 +7,10 @@ import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.data.config.Resource
 import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
 import com.arthurabreu.allthingsandroid.domain.model.DomainData
@@ -83,6 +85,18 @@ class HomeViewModel(
 
     fun onListsClick () {
         appNavigator.tryNavigateTo(ListsFeature.Lists.route)
+    }
+
+    fun onLoginsClick() {
+        appNavigator.tryNavigateTo(LoginFeature.Logins.route)
+    }
+
+    fun onLoginFakeClick() {
+        appNavigator.tryNavigateTo(LoginFeature.LoginFake.route)
+    }
+
+    fun onTextFieldsClick() {
+        appNavigator.tryNavigateTo(TextFieldsFeature.TextFields.route)
     }
 
     private fun loadApiData() {

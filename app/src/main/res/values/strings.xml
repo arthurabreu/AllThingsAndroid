@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AllThingsAndroid</string>
+    <string name="app_icon">App Icon</string>
 </resources>
