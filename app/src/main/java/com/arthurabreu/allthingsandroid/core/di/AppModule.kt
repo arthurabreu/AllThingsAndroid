@@ -1,16 +1,14 @@
 package com.arthurabreu.allthingsandroid.core.di
 
-import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigatorImpl
 import com.arthurabreu.allthingsandroid.services.MyRepository
 import com.arthurabreu.allthingsandroid.services.MyRepositoryImpl
 import com.arthurabreu.allthingsandroid.services.MyUseCase
+import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import com.arthurabreu.allthingsandroid.utils.logger.Logger
-import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
-
 import org.koin.dsl.module
 
 /*
@@ -29,9 +27,5 @@ val appModule = module {
 
     factory { (className: String) -> ClassLogger(className) }
     single<Logger> { ClassLogger("MyClass") }
-
-    viewModel { DownloadViewModel() }
-
-    viewModel { DownloadViewModel() }
 }
 

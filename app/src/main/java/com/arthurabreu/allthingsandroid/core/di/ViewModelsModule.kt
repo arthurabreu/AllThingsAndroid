@@ -1,5 +1,7 @@
 package com.arthurabreu.allthingsandroid.core.di
 
+import com.arthurabreu.allthingsandroid.ui.viewmodel.apishowcase.ApiShowcaseViewModel
+import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.home.HomeViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.login.LoginViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.profile.ProfileViewmodel
@@ -20,12 +22,18 @@ val viewModelsModule = module {
     viewModel {
         HomeViewModel(
             get(),
-            get(),
-            get(),
             logger = get(parameters = { parametersOf(HomeViewModel::class.java.simpleName) })
     ) }
 
     viewModel { ProfileViewmodel(get()) }
     viewModel { SettingsViewModel(get()) }
     viewModel { LoginViewModel(get()) }
+    viewModel { DownloadViewModel() }
+    viewModel {
+        ApiShowcaseViewModel(
+            repository = get(),
+            useCases = get(),
+            logger = get { parametersOf("ApiShowcaseViewModel") }
+        )
+    }
 }

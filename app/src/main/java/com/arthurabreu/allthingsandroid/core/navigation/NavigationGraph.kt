@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
@@ -24,6 +25,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
+import com.arthurabreu.allthingsandroid.ui.screen.apishowcase.ApiShowcaseScreen
 import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.screen.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.screen.login.LoginScreen
@@ -82,6 +84,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(TextFieldsFeature.TextFields.fullRoute)  {
                     AllTextFieldsScreen()
+                }
+                composable(ApiShowcaseFeature.JsonPlaceHolder.fullRoute)  {
+                    ApiShowcaseScreen()
                 }
             }
         }

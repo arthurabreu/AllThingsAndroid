@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
@@ -27,48 +28,22 @@ import kotlinx.coroutines.runBlocking
 
 class HomeViewModel(
     private val appNavigator: AppNavigator,
-    private val repository: ApiRepository,
-    private val useCases: DataUseCases,
     private val logger: ClassLogger
 ) : ViewModel() {
 
     private val _userdata = MutableStateFlow("")
     val userdata: StateFlow<String?> = _userdata
 
-    private val _apiData = MutableStateFlow<Resource<DomainModel>>(Resource.Loading)
-    val apiData: StateFlow<Resource<DomainModel>> = _apiData
-
-    /* The Db State.
-         This is the state that the UI will observe to get the latest data from the database.
-         It will be updated by the ViewModel when the data changes.
-     */
-    private val _dataState = MutableStateFlow<Resource<DomainData>>(Resource.Loading)
-    val dataState: StateFlow<Resource<DomainData>> = _dataState
-
     init {
         _userdata.value = "user123" // Data to pass through arguments to other destinations
         Log.d("MainViewModel", "MainViewModel created")
 
-        loadApiData() // Load data from api and saves in the db
         performCalculation(2,3)
     }
 
-    fun onProfileClick() {
-        when (val currentData = _apiData.value) {
-            is Resource.Success -> {
-                val userId = currentData.data.userId.toString() // Assuming userId in DomainModel
-                val route = ProfileFeature.Profile(userId = userId)
-                appNavigator.tryNavigateTo(route)
-            }
-            is Resource.Error -> {
-                // Handle error state
-                //showError(currentData.exception.message)
-            }
-            Resource.Loading -> {
-                // Handle loading state
-                //showLoading()
-            }
-        }
+    fun onProfileClick(userId: String) {
+        val route = ProfileFeature.Profile(userId = userId)
+        appNavigator.tryNavigateTo(route)
     }
 
     fun onSettingsClick() {
@@ -99,34 +74,12 @@ class HomeViewModel(
         appNavigator.tryNavigateTo(TextFieldsFeature.TextFields.route)
     }
 
-    private fun loadApiData() {
-        viewModelScope.launch {
-            logApiExecution(logger) {
-                _apiData.value = Resource.Loading
-                try {
-                    val result = repository.getData()
-                    _apiData.value = Resource.Success(result)
-                } catch (e: DomainException) {
-                    _apiData.value = Resource.Error(e)
-                    throw e // Re-throw to ensure logExecution captures the failure
-                }
-            }
-        }
+    fun onApiShowcaseClick() {
+        appNavigator.tryNavigateTo(ApiShowcaseFeature.JsonPlaceHolder.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function
-    private fun performCalculation(a: Int, b: Int): Int {
-        // To call a suspend function, we need a coroutine scope
-        return runBlocking {
-            logApiExecution(logger) {
-                println("Performing calculation...")
-                return@logApiExecution a + b // The block returns the result
-            }
-        }
-    }
-
     /*
-    * The following logs are examples of the logger usage in the two functions above,
     *
     * 2025-04-07 11:24:17.929  9537-9537  HomeViewModel           com.arthurabreu.allthingsandroid     D  Execution Started:
    CallerResolver.getCallerInfo()
@@ -157,36 +110,13 @@ class HomeViewModel(
 -> HomeViewModel$loadApiData$1.invokeSuspend()          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
    BaseContinuationImpl.resumeWith()
      */
-
-   /* Persistence Operations
-      Room db, DataStore operations
-      (For single fetch)
-   */
-   private fun getLatestData() {
-       viewModelScope.launch {
-           _dataState.value = Resource.Loading
-           try {
-               val data = useCases.getLatestData()
-               _dataState.value = Resource.Success(data)
-           } catch (e: Exception) {
-               _dataState.value = Resource.Error(DomainException.UnknownError(e.message ?: "Unknown error"))
-           }
-       }
-   }
-
-    // For continuous observation
-    val observedData: Flow<DomainData> = useCases.observeData() // Observe changes in the data
-}
-
-/*
-Usages:
-// Single fetch
-viewModel.loadData()
-
-// Observe changes
-viewModel.observedData
-    .onEach { data ->
-        // Update UI with latest data
+    private fun performCalculation(a: Int, b: Int): Int {
+        // To call a suspend function, we need a coroutine scope
+        return runBlocking {
+            logApiExecution(logger) {
+                println("Performing calculation...")
+                return@logApiExecution a + b // The block returns the result
+            }
+        }
     }
-    .launchIn(viewModelScope)
- */
+}
