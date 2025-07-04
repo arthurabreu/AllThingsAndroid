@@ -21,6 +21,9 @@ fun HomeScreen(
         onDownloadClick = { viewModel.onDownloadClick() },
         onButtonsClick = { viewModel.onButtonsClick() },
         onListsClick = { viewModel.onListsClick() },
+        onLoginsClick = { viewModel.onLoginsClick() },
+        onLoginFakeClick = { viewModel.onLoginFakeClick() },
+        onTextFieldsClick = { viewModel.onTextFieldsClick() },
         json = domainData.value.toString()
     )
 }
