@@ -17,7 +17,7 @@ fun HomeScreen(
     onLoginsClick: () -> Unit,
     onLoginFakeClick: () -> Unit,
     onTextFieldsClick: () -> Unit,
-    json: String,
+    onApiShowcaseClick: () -> Unit,
 ) {
     Column {
         Button(
@@ -60,6 +60,11 @@ fun HomeScreen(
         ) {
             Text(stringResource(R.string.go_to_text_fields_example))
         }
-        Text(text = stringResource(R.string.domain_data_from_api_db, json))
+        Button(
+            onClick = { onApiShowcaseClick() }
+        ) {
+            Text(stringResource(R.string.go_to_api_showcase_example))
+        }
+
     }
 }
