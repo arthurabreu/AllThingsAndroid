@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arthurabreu.allthingsandroid.utils.CpfUtils
 import com.arthurabreu.allthingsandroid.utils.CpfVisualTransformation
+import com.arthurabreu.allthingsandroid.utils.logger.Logger
+import com.arthurabreu.allthingsandroid.utils.logger.logExecution
 import com.arthurabreu.commonscreens.ui.state.login.AllLoginsState
 import com.arthurabreu.commonscreens.ui.state.textfields.AllTextFieldsState
 import kotlinx.coroutines.delay
@@ -18,7 +20,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class LoginViewModel() : ViewModel() {
+class LoginViewModel(
+    private val logger: Logger
+) : ViewModel() {
 
     private val _numberFieldState = MutableStateFlow(
         AllTextFieldsState(
@@ -69,24 +73,33 @@ class LoginViewModel() : ViewModel() {
     }
 
     private fun onLoginClick() {
-        val cpf = _loginState.value.cpfState.value
-        if (!CpfUtils.isCpfValid(CpfUtils.formatPartialCpf(cpf))) {
-            _loginState.update { currentState ->
-                currentState.copy(
-                    cpfState = currentState.cpfState.copy(
-                        isError = true,
-                        supportingText = { Text("Invalid CPF format") }
-                    )
-                )
-            }
-            return
-        }
-
         viewModelScope.launch {
-            _loginState.update { it.copy(isLoading = true) }
-            // Simulate network call
-            delay(2000)
-            _loginState.update { it.copy(isLoading = false) }
+            logExecution(
+                logger = logger,
+                tag = "LoginViewModel",
+                functionName = "onLoginClick",
+                ) {
+                val cpf = _loginState.value.cpfState.value
+                val formattedCpf = CpfUtils.formatPartialCpf(cpf)
+                if (!CpfUtils.isCpfValid(formattedCpf)) {
+                    _loginState.update { currentState ->
+                        currentState.copy(
+                            cpfState = currentState.cpfState.copy(
+                                isError = true,
+                                supportingText = { Text("Invalid CPF format") }
+                            )
+                        )
+                    }
+                    return@logExecution // Exit the logged block
+                }
+
+                _loginState.update { it.copy(isLoading = true) }
+                // Simulate network call
+                delay(timeMillis = 2000)
+                // Example of a simulated error
+                // throw RuntimeException("Simulated network error!")
+                _loginState.update { it.copy(isLoading = false) }
+            }
         }
     }
 

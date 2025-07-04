@@ -18,7 +18,7 @@ import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 import com.arthurabreu.allthingsandroid.domain.repos.ApiRepository
 import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
-import com.arthurabreu.allthingsandroid.utils.logger.logExecution
+import com.arthurabreu.allthingsandroid.utils.logger.logApiExecution
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -101,7 +101,7 @@ class HomeViewModel(
 
     private fun loadApiData() {
         viewModelScope.launch {
-            logExecution(logger) {
+            logApiExecution(logger) {
                 _apiData.value = Resource.Loading
                 try {
                     val result = repository.getData()
@@ -118,9 +118,9 @@ class HomeViewModel(
     private fun performCalculation(a: Int, b: Int): Int {
         // To call a suspend function, we need a coroutine scope
         return runBlocking {
-            logExecution(logger) {
+            logApiExecution(logger) {
                 println("Performing calculation...")
-                return@logExecution a + b // The block returns the result
+                return@logApiExecution a + b // The block returns the result
             }
         }
     }
