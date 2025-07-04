@@ -7,7 +7,7 @@ package com.arthurabreu.allthingsandroid.utils.logger
      It logs the start of the execution, executes the block, and then logs the completion or failure,
      including information about the calling method obtained from CallerResolver.
 */
-suspend inline fun <T> logExecution(
+suspend inline fun <T> logApiExecution(
     logger: Logger,
     crossinline block: suspend () -> T
 ): T {
@@ -22,6 +22,23 @@ suspend inline fun <T> logExecution(
         val failureCallerInfo = CallerResolver.getCallerInfo()
         logger.e("Execution Failed:\n$failureCallerInfo", e)
         throw e
+    }
+}
+
+suspend fun <T> logExecution(
+    logger: Logger,
+    tag: String,
+    functionName: String,
+    block: suspend () -> T
+): T? {
+    logger.d("$functionName execution started. tag: $tag")
+    return try {
+        val result = block()
+        logger.d("$functionName execution finished successfully. tag: $tag")
+        result
+    } catch (e: Exception) {
+        logger.e("$functionName failed with an exception. tag: $tag", e)
+        null // Or rethrow the exception depending on desired behavior
     }
 }
 
