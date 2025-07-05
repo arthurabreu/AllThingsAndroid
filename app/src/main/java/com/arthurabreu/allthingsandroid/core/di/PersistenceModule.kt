@@ -33,10 +33,10 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "se
 val persistenceModule = module {
     single {
         Room.databaseBuilder(
-            androidContext(),
-            AppDatabase::class.java,
-            "app-database"
-        ).fallbackToDestructiveMigration().build()
+                androidContext(),
+                AppDatabase::class.java,
+                "app-database"
+            ).fallbackToDestructiveMigration(false).build()
     }
 
     single { get<AppDatabase>().dataDao() }
