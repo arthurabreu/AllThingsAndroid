@@ -61,7 +61,7 @@ class ApiShowcaseViewModel(
      Room db, DataStore operations
      (For single fetch)
   */
-    private fun getLatestData() {
+    fun getLatestData() {
         viewModelScope.launch {
             _dataState.value = Resource.Loading
             try {

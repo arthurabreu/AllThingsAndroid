@@ -3,12 +3,22 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
-    id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp") version "2.2.0-2.0.2"
 }
 
 android {
     namespace = "com.arthurabreu.allthingsandroid"
     compileSdk = 35
+
+    /*
+     Configures the KSP \(Kotlin Symbol Processing\) plugin to pass an argument to the Room processor.
+
+     The argument `room.schemaLocation` specifies the directory \(`$projectDir/schemas`\) where Room exports database schemas as JSON files.
+     These schema files are used to track changes over time, which is essential for managing database migrations.
+ */
+    ksp {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 
     defaultConfig {
         applicationId = "com.arthurabreu.allthingsandroid"
@@ -17,9 +27,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,15 +41,24 @@ android {
             )
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+        }
     }
+
     buildFeatures {
         compose = true
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform() // Enable JUnit 5
     }
 }
 
@@ -91,11 +108,18 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
 
     // Tests
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    // JUnit 5 and MockK
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.junit.vintage.engine)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(kotlin("test"))
+    testRuntimeOnly(libs.junit.jupiter.engine)
+
+    // For InstantTaskExecutorRule functionality (even when creating an extension)
+    testImplementation(libs.androidx.core.testing)
+
+    // For Coroutines testing (TestCoroutineDispatcher, etc.)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
