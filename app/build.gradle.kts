@@ -27,8 +27,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -59,6 +57,23 @@ android {
 
     tasks.withType<Test> {
         useJUnitPlatform() // Enable JUnit 5
+    }
+
+    /*
+     * Configures packaging options to resolve file conflicts during the APK build process.
+     *
+     * The `packagingOptions` block specifies rules for how files from different dependencies are merged.
+     * The `resources.excludes` directive prevents specific files from being included in the final APK.
+     *
+     * This rule excludes `/META-INF/LICENSE.md` to resolve build errors caused by multiple
+     * dependencies including a file with the same path. The leading slash `/` ensures the path
+     * is matched from the root of the JAR archive.
+     */
+    packaging {
+        resources {
+            excludes.add("META-INF/LICENSE.md")
+            excludes.add("META-INF/LICENSE-notice.md")
+        }
     }
 }
 
@@ -122,4 +137,9 @@ dependencies {
 
     // For Coroutines testing (TestCoroutineDispatcher, etc.)
     testImplementation(libs.kotlinx.coroutines.test)
+
+    // Espresso
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
