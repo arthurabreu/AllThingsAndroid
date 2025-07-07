@@ -1,6 +1,7 @@
 package com.arthurabreu.allthingsandroid.ui.viewmodel.settings
 
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
+import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.verify
@@ -14,7 +15,7 @@ import kotlin.test.Test
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
-class SettingsViewModelTest {
+class SettingsViewModelTest : BaseViewModelTest() {
     private lateinit var viewModelTest: SettingsViewModel
     private val mockAppNavigator: AppNavigator = mockk(relaxed = true)
 
@@ -25,7 +26,7 @@ class SettingsViewModelTest {
 
     @Test
     @DisplayName("Given ViewModel is initialized, When onBackButtonClicked is called, Then tryNavigateBack is invoked on AppNavigator")
-    fun onBackButtonClicked() {
+    fun givenViewModelIsInitialized_whenOnBack_thenTryNavigateBackIsInvoked() {
         // When
         viewModelTest.onBackButtonClicked()
 

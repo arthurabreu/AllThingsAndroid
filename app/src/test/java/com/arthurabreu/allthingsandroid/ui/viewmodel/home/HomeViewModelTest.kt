@@ -9,6 +9,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
+import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import io.mockk.Runs
 import io.mockk.every
@@ -28,7 +29,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
-class HomeViewModelTest {
+class HomeViewModelTest : BaseViewModelTest() {
 
     private lateinit var viewModel: HomeViewModel
     private val mockNavigator: AppNavigator = mockk()

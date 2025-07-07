@@ -1,5 +1,6 @@
 package com.arthurabreu.allthingsandroid.ui.viewmodel.login
 
+import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import dalvik.annotation.TestTarget
 import io.mockk.Runs
@@ -21,7 +22,7 @@ import kotlin.test.Test
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
-class LoginViewModelTest {
+class LoginViewModelTest : BaseViewModelTest() {
     private lateinit var viewModel: LoginViewModel
     private val mockLogger: ClassLogger = mockk(relaxed = true)
 

@@ -1,6 +1,7 @@
 package com.arthurabreu.allthingsandroid.ui.viewmodel.profile
 
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
+import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
 import io.mockk.verify
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
-class ProfileViewModelTest {
+class ProfileViewModelTest : BaseViewModelTest() {
     private lateinit var viewModel: ProfileViewmodel
     private val mockAppNavigator: AppNavigator = mockk(relaxed = true)
 

@@ -2,6 +2,7 @@ package com.arthurabreu.allthingsandroid.ui.viewmodel.download
 
 import androidx.compose.ui.graphics.Color
 import com.arthurabreu.allthingsandroid.ui.states.DownloadState
+import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import io.mockk.junit5.MockKExtension
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runCurrent
@@ -17,7 +18,7 @@ import kotlin.test.assertTrue
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockKExtension::class)
-class DownloadViewmodelTest {
+class DownloadViewmodelTest : BaseViewModelTest() {
 
     private lateinit var viewModel: DownloadViewModel
 
