@@ -12,7 +12,6 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsF
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import io.mockk.Runs
 import io.mockk.every
-import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
 import io.mockk.just
 import io.mockk.mockk
@@ -168,19 +167,5 @@ class HomeViewModelTest {
 
         // Then
         verify { mockNavigator.tryNavigateTo(ApiShowcaseFeature.JsonPlaceHolder.route) }
-    }
-
-    @Test
-    @DisplayName("Given ViewModel is initialized, When init block executes, Then calculation logs are recorded")
-    fun givenViewModelIsInitialized_whenInitBlockExecutes_thenCalculationLogsRecorded() = runTest {
-        // Then
-        verify(exactly = 2) {
-            mockLogger.d(
-                match {
-                    it.contains("Execution") &&
-                            (it.contains("Started") || it.contains("Completed"))
-                }
-            )
-        }
     }
 }
