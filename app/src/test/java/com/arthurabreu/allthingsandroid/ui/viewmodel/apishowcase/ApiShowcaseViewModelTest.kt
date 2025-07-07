@@ -1,4 +1,4 @@
-package com.arthurabreu.allthingsandroid.ui.viewmodel
+package com.arthurabreu.allthingsandroid.ui.viewmodel.apishowcase
 
 import com.arthurabreu.allthingsandroid.data.config.Resource
 import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
@@ -6,7 +6,7 @@ import com.arthurabreu.allthingsandroid.domain.model.DomainData
 import com.arthurabreu.allthingsandroid.domain.model.DomainModel
 import com.arthurabreu.allthingsandroid.domain.repos.ApiRepository
 import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
-import com.arthurabreu.allthingsandroid.ui.viewmodel.apishowcase.ApiShowcaseViewModel
+import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -17,10 +17,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.reflect.full.declaredMemberFunctions
@@ -76,8 +76,8 @@ class ApiShowcaseViewModelTest : BaseViewModelTest() {
 
         // Then
         val state = viewModel.apiData.value
-        assertInstanceOf(Resource.Success::class.java, state)
-        assertEquals(mockDomainModel, (state as Resource.Success).data)
+        Assertions.assertInstanceOf(Resource.Success::class.java, state)
+        Assertions.assertEquals(mockDomainModel, (state as Resource.Success).data)
         coVerify(exactly = 4) { repository.getData() }
     }
 
@@ -93,8 +93,8 @@ class ApiShowcaseViewModelTest : BaseViewModelTest() {
 
         // Then
         val state = viewModel.apiData.value
-        assertInstanceOf(Resource.Error::class.java, state)
-        assertEquals(exception, (state as Resource.Error).exception)
+        Assertions.assertInstanceOf(Resource.Error::class.java, state)
+        Assertions.assertEquals(exception, (state as Resource.Error).exception)
     }
 
     @Test
@@ -112,8 +112,8 @@ class ApiShowcaseViewModelTest : BaseViewModelTest() {
 
         // Then
         val state = viewModel.dataState.value
-        assertInstanceOf(Resource.Success::class.java, state)
-        assertEquals(mockDomainData, (state as Resource.Success).data)
+        Assertions.assertInstanceOf(Resource.Success::class.java, state)
+        Assertions.assertEquals(mockDomainData, (state as Resource.Success).data)
         coVerify(exactly = 1) { useCases.getLatestData() }
     }
 
@@ -133,23 +133,24 @@ class ApiShowcaseViewModelTest : BaseViewModelTest() {
 
         // Then
         val state = viewModel.dataState.value
-        assertInstanceOf(Resource.Error::class.java, state)
+        Assertions.assertInstanceOf(Resource.Error::class.java, state)
         val domainException = (state as Resource.Error).exception
-        assertInstanceOf(DomainException.UnknownError::class.java, domainException)
-        assertEquals("Database error", domainException.message)
+        Assertions.assertInstanceOf(DomainException.UnknownError::class.java, domainException)
+        Assertions.assertEquals("Database error", domainException.message)
     }
 
     @Test
     @DisplayName("Given observeData returns flow, when ViewModel is initialized, then observedData emits data")
-    fun givenObserveDataReturnsFlow_whenViewModelIsInitialized_thenObservedDataEmitsData() = runTest {
-        // Given
-        every { useCases.observeData() } returns flowOf(mockDomainData)
+    fun givenObserveDataReturnsFlow_whenViewModelIsInitialized_thenObservedDataEmitsData() =
+        runTest {
+            // Given
+            every { useCases.observeData() } returns flowOf(mockDomainData)
 
-        // When
-        viewModel = ApiShowcaseViewModel(repository, useCases, logger)
+            // When
+            viewModel = ApiShowcaseViewModel(repository, useCases, logger)
 
-        // Then
-        val observed = viewModel.observedData.first()
-        assertEquals(mockDomainData, observed)
-    }
+            // Then
+            val observed = viewModel.observedData.first()
+            Assertions.assertEquals(mockDomainData, observed)
+        }
 }
