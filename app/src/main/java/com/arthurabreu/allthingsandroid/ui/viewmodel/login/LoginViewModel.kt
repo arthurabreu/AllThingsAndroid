@@ -79,26 +79,26 @@ class LoginViewModel(
                 tag = "LoginViewModel",
                 functionName = "onLoginClick",
                 ) {
-                val cpf = _loginState.value.cpfState.value
-                val formattedCpf = CpfUtils.formatPartialCpf(cpf)
-                if (!CpfUtils.isCpfValid(formattedCpf)) {
-                    _loginState.update { currentState ->
-                        currentState.copy(
-                            cpfState = currentState.cpfState.copy(
-                                isError = true,
-                                supportingText = { Text("Invalid CPF format") }
+                    val cpf = _loginState.value.cpfState.value
+                    val formattedCpf = CpfUtils.formatPartialCpf(cpf)
+                    if (!CpfUtils.isCpfValid(formattedCpf)) {
+                        _loginState.update { currentState ->
+                            currentState.copy(
+                                cpfState = currentState.cpfState.copy(
+                                    isError = true,
+                                    supportingText = { Text("Invalid CPF format") }
+                                )
                             )
-                        )
+                        }
+                        return@logExecution // Exit the logged block
                     }
-                    return@logExecution // Exit the logged block
-                }
 
-                _loginState.update { it.copy(isLoading = true) }
-                // Simulate network call
-                delay(timeMillis = 2000)
-                // Example of a simulated error
-                // throw RuntimeException("Simulated network error!")
-                _loginState.update { it.copy(isLoading = false) }
+                    _loginState.update { it.copy(isLoading = true) }
+                    // Simulate network call
+                    delay(timeMillis = 2000)
+                    // Example of a simulated error
+                    // throw RuntimeException("Simulated network error!")
+                    _loginState.update { it.copy(isLoading = false) }
             }
         }
     }
