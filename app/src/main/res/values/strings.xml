@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">AllThingsAndroid</string>
     <string name="app_icon">App Icon</string>
+    <string name="sweet_sleep">Sweet Sleep</string>
+    <string name="insomnia">Insomnia</string>
+    <string name="depression">Depression</string>
+    <string name="arthur_abreu">Arthur Abreu</string>
+    <string name="good_morning">Good morning, %1$s</string>
+    <string name="we_wish_you_have_a_good_day">We wish you have a good day!</string>
+    <string name="search">Search</string>
+    <string name="daily_thought">Daily Thought</string>
+    <string name="meditation_3_10_min">Meditation - 3-10 min</string>
+    <string name="play">Play</string>
+    <string name="featuremeditations">FeatureMeditations</string>
+    <string name="start">Start</string>
 </resources>

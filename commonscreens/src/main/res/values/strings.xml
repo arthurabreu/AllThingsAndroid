@@ -59,6 +59,7 @@
     <string name="go_to_logins_fake_example">Go to Login Fake Example</string>
     <string name="go_to_text_fields_example">Go to Text Fields Example</string>
     <string name="go_to_api_showcase_example">Go to api Showcase Examples</string>
+    <string name="go_to_meditation_ui_example">Go to Meditation Ui Example</string>
     <string name="domain_data_from_api_db"><![CDATA[\nDomain data from api -> db: \n\n%1$s]]></string>
     <string name="label">Label</string>
 </resources>

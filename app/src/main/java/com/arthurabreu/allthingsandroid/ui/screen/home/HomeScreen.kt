@@ -19,5 +19,6 @@ fun HomeScreen(
         onLoginFakeClick = { viewModel.onLoginFakeClick() },
         onTextFieldsClick = { viewModel.onTextFieldsClick() },
         onApiShowcaseClick = { viewModel.onApiShowcaseClick() },
+        onMeditationUiClick = { viewModel.onMeditationUiClick() },
     )
 }
