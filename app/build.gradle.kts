@@ -75,6 +75,9 @@ android {
             excludes.add("META-INF/LICENSE-notice.md")
         }
     }
+    kotlinOptions {
+        freeCompilerArgs = listOf("-XXLanguage:+PropertyParamAnnotationDefaultTargetMode")
+    }
 }
 
 dependencies {

@@ -22,6 +22,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFea
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
@@ -29,6 +30,7 @@ import com.arthurabreu.allthingsandroid.ui.screen.apishowcase.ApiShowcaseScreen
 import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.screen.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.screen.login.LoginScreen
+import com.arthurabreu.allthingsandroid.ui.screen.meditation.HomeMeditation
 import com.arthurabreu.allthingsandroid.ui.screen.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.screen.settings.SettingsScreen
 import com.arthurabreu.commonscreens.ui.screens.buttons.ButtonScreen
@@ -87,6 +89,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(ApiShowcaseFeature.JsonPlaceHolder.fullRoute)  {
                     ApiShowcaseScreen()
+                }
+                composable(MeditationFeature.Meditation.fullRoute)  {
+                    HomeMeditation()
                 }
             }
         }

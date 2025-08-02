@@ -2,28 +2,20 @@ package com.arthurabreu.allthingsandroid.ui.viewmodel.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
-import com.arthurabreu.allthingsandroid.data.config.Resource
-import com.arthurabreu.allthingsandroid.domain.exceptions.DomainException
-import com.arthurabreu.allthingsandroid.domain.model.DomainData
-import com.arthurabreu.allthingsandroid.domain.model.DomainModel
-import com.arthurabreu.allthingsandroid.domain.repos.ApiRepository
-import com.arthurabreu.allthingsandroid.domain.usecases.DataUseCases
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import com.arthurabreu.allthingsandroid.utils.logger.logApiExecution
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class HomeViewModel(
@@ -76,6 +68,10 @@ class HomeViewModel(
 
     fun onApiShowcaseClick() {
         appNavigator.tryNavigateTo(ApiShowcaseFeature.JsonPlaceHolder.route)
+    }
+
+    fun onMeditationUiClick() {
+        appNavigator.tryNavigateTo(MeditationFeature.Meditation.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function

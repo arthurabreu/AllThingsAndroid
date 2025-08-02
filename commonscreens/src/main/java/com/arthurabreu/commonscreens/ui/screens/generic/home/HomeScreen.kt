@@ -1,7 +1,6 @@
 package com.arthurabreu.commonscreens.ui.screens.generic.home
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +22,7 @@ fun HomeScreen(
     onLoginFakeClick: () -> Unit,
     onTextFieldsClick: () -> Unit,
     onApiShowcaseClick: () -> Unit,
+    onMeditationUiClick: () -> Unit,
 ) {
     val menuButtons = listOf(
         MenuButtonInfo(R.string.go_to_profile, onProfileClick),
@@ -33,7 +33,8 @@ fun HomeScreen(
         MenuButtonInfo(R.string.go_to_logins_example, onLoginsClick),
         MenuButtonInfo(R.string.go_to_logins_fake_example, onLoginFakeClick),
         MenuButtonInfo(R.string.go_to_text_fields_example, onTextFieldsClick),
-        MenuButtonInfo(R.string.go_to_api_showcase_example, onApiShowcaseClick)
+        MenuButtonInfo(R.string.go_to_api_showcase_example, onApiShowcaseClick),
+        MenuButtonInfo(R.string.go_to_meditation_ui_example, onMeditationUiClick)
     )
 
     LazyColumn(
