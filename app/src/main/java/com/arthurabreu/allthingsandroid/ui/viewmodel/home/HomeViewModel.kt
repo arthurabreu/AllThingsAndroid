@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.CalculatorFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
@@ -72,6 +73,10 @@ class HomeViewModel(
 
     fun onMeditationUiClick() {
         appNavigator.tryNavigateTo(MeditationFeature.Meditation.route)
+    }
+
+    fun onCalculatorUiClick() {
+        appNavigator.tryNavigateTo(CalculatorFeature.Calculator.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function

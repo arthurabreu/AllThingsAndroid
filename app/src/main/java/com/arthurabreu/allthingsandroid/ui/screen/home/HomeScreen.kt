@@ -20,5 +20,6 @@ fun HomeScreen(
         onTextFieldsClick = { viewModel.onTextFieldsClick() },
         onApiShowcaseClick = { viewModel.onApiShowcaseClick() },
         onMeditationUiClick = { viewModel.onMeditationUiClick() },
+        onCalculatorUiClick = { viewModel.onCalculatorUiClick() },
     )
 }
