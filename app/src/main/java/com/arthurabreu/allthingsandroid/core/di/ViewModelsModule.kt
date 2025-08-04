@@ -1,5 +1,6 @@
 package com.arthurabreu.allthingsandroid.core.di
 
+import SolidViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.apishowcase.ApiShowcaseViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.calculator.CalculatorViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
@@ -38,4 +39,5 @@ val viewModelsModule = module {
         )
     }
     viewModel { CalculatorViewModel() }
+    viewModel { SolidViewModel() }
 }

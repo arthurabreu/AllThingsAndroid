@@ -61,6 +61,7 @@
     <string name="go_to_api_showcase_example">Go to api Showcase Examples</string>
     <string name="go_to_meditation_ui_example">Go to Meditation Ui Example</string>
     <string name="go_to_calculator_example">Go to Calculator</string>
+    <string name="go_to_solid_example">Go to Solid Principles</string>
     <string name="domain_data_from_api_db"><![CDATA[\nDomain data from api -> db: \n\n%1$s]]></string>
     <string name="label">Label</string>
 </resources>
