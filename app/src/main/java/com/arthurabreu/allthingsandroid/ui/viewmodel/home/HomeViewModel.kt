@@ -6,6 +6,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.CalculatorFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.DesignPrincipleFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
@@ -82,6 +83,10 @@ class HomeViewModel(
 
     fun onSolidUiClick() {
         appNavigator.tryNavigateTo(SolidFeature.Solid.route)
+    }
+
+    fun onDesignPrincipleUiClick() {
+        appNavigator.tryNavigateTo(DesignPrincipleFeature.DesignPrinciple.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function
