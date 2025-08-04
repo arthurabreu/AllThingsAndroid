@@ -1,12 +1,19 @@
 package com.arthurabreu.allthingsandroid.ui.screen.calculator
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -18,7 +25,6 @@ import com.arthurabreu.allthingsandroid.data.calculator.CalculatorAction
 import com.arthurabreu.allthingsandroid.data.calculator.CalculatorOperation
 import com.arthurabreu.allthingsandroid.data.calculator.CalculatorState
 import com.arthurabreu.allthingsandroid.ui.theme.OrangeYellow2
-import kotlin.compareTo
 
 private val ButtonSpacing = 8.dp
 private val NumButtonColor = Color.DarkGray
@@ -39,20 +45,23 @@ fun Calculator(
                 .align(Alignment.BottomCenter),
             verticalArrangement = Arrangement.spacedBy(buttonSpacing)
         ) {
+            val maxChars = 8
             val displayText = state.number1 + (state.operation?.symbol ?: "") + state.number2
             val dynamicFontSize = if (displayText.length > 8) 40.sp else 60.sp
+            val limitedDisplayText = displayText.take(maxChars)
 
             Text(
-                text = displayText,
+                text = limitedDisplayText,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .testTag("CalculatorDisplay")
                     .padding(40.dp),
                 fontWeight = FontWeight.Light,
                 fontSize = dynamicFontSize,
                 color = Color.Black,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Visible
             )
             CalculatorRow(
                 listOf(

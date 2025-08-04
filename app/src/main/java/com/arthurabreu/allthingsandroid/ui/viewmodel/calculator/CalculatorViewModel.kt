@@ -55,11 +55,20 @@ class CalculatorViewModel : ViewModel() {
             } else {
                 resultStr.take(MAX_NUM_LENGTH)
             }
+            val formattedResult = formatResult(limitedResult)
             state = state.copy(
-                number1 = limitedResult,
+                number1 = formattedResult,
                 number2 = "",
                 operation = null
             )
+        }
+    }
+
+    private fun formatResult(result: String): String {
+        return if (result.endsWith(".0")) {
+            result.dropLast(2)
+        } else {
+            result
         }
     }
 
