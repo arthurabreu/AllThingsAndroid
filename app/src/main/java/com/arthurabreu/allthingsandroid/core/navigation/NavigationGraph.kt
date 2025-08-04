@@ -1,5 +1,6 @@
 package com.arthurabreu.allthingsandroid.core.navigation
 
+import SolidScreen
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.ui.screen.apishowcase.ApiShowcaseScreen
 import com.arthurabreu.allthingsandroid.ui.screen.calculator.CalculatorScreen
@@ -97,6 +99,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(CalculatorFeature.Calculator.fullRoute)  {
                     CalculatorScreen()
+                }
+                composable(SolidFeature.Solid.fullRoute)  {
+                    SolidScreen()
                 }
             }
         }

@@ -12,6 +12,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import com.arthurabreu.allthingsandroid.utils.logger.logApiExecution
@@ -77,6 +78,10 @@ class HomeViewModel(
 
     fun onCalculatorUiClick() {
         appNavigator.tryNavigateTo(CalculatorFeature.Calculator.route)
+    }
+
+    fun onSolidUiClick() {
+        appNavigator.tryNavigateTo(SolidFeature.Solid.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function
