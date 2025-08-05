@@ -22,5 +22,6 @@ fun HomeScreen(
         onMeditationUiClick = { viewModel.onMeditationUiClick() },
         onCalculatorUiClick = { viewModel.onCalculatorUiClick() },
         onSolidUiClick = { viewModel.onSolidUiClick() },
+        onDesignPrincipleUiClick = { viewModel.onDesignPrincipleUiClick() },
     )
 }

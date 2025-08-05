@@ -19,6 +19,7 @@ import androidx.navigation.navArgument
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.CalculatorFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.DesignPrincipleFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
@@ -30,6 +31,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.ui.screen.apishowcase.ApiShowcaseScreen
 import com.arthurabreu.allthingsandroid.ui.screen.calculator.CalculatorScreen
+import com.arthurabreu.allthingsandroid.ui.screen.designprinciple.DesignPrincipleScreen
 import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.screen.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.screen.login.LoginScreen
@@ -102,6 +104,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(SolidFeature.Solid.fullRoute)  {
                     SolidScreen()
+                }
+                composable(DesignPrincipleFeature.DesignPrinciple.fullRoute)  {
+                    DesignPrincipleScreen()
                 }
             }
         }
