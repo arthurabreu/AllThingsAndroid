@@ -82,13 +82,6 @@ The application includes the following distinct features and UI showcases:
 ## Calculator Instrumented Tests Demo
 [![Calculator Instrumented Tests](https://img.youtube.com/vi/ZUHIOGA8iao/0.jpg)](https://www.youtube.com/watch?v=ZUHIOGA8iao)
 
-
-## License
-
-Distributed under the [Choose a License, e.g., MIT License]. See `LICENSE.txt` for more information.
-
-*(Create a `LICENSE.txt` file in your project root with the license text. For example, for MIT License: https://opensource.org/licenses/MIT)*
-
 ## Acknowledgements
 
 *   Android Developer Documentation ([https://developer.android.com/](https://developer.android.com/))
