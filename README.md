@@ -2,6 +2,11 @@
 
 AllThingsAndroid is an Android application built with Jetpack Compose, designed to showcase a variety of common UI patterns, modern Android development best practices using Jetpack libraries, and distinct feature implementations. It serves as a practical reference for building contemporary Android apps.
 
+Some cases don't have clean architecture and the best patterns, as they can be used to discuss the best approach. 
+Most other examples are coded clean, with unit tets and instrumented tests.
+
+Only Medidation UI had a design that was thought as a showcase, the rest is mostly to showcase code.
+
 ## Features Implemented
 
 The application includes the following distinct features and UI showcases:
