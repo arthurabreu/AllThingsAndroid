@@ -91,8 +91,7 @@ The application includes the following distinct features and UI showcases:
 
 ---
 
-**Author:** [Your Name/Handle]
-**Project Link:** [https://github.com/YOUR_GITHUB_USERNAME/AllThingsAndroid.git](https://github.com/YOUR_GITHUB_USERNAME/AllThingsAndroid.git)
-*(Remember to replace this link)*
+**Author:** [Arthur Abreu/Senior Android Developer]
+**Project Link:** [https://github.com/arthurabreu/AllThingsAndroid.git](https://github.com/arthur_abreu/AllThingsAndroid.git)
 
     
