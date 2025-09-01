@@ -7,6 +7,7 @@ import com.arthurabreu.allthingsandroid.ui.viewmodel.designprinciple.DesignPrinc
 import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.home.HomeViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.login.LoginViewModel
+import com.arthurabreu.allthingsandroid.ui.viewmodel.olympics.OlympicsViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.profile.ProfileViewmodel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -42,4 +43,5 @@ val viewModelsModule = module {
     viewModel { CalculatorViewModel() }
     viewModel { SolidViewModel() }
     viewModel { DesignPrincipleViewModel() }
+    viewModel { OlympicsViewModel(get()) }
 }
