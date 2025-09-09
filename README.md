@@ -1,11 +1,111 @@
-## AllThingsAndroid
+# AllThingsAndroid
 
 AllThingsAndroid is an Android application built with Jetpack Compose, designed to showcase a variety of common UI patterns, modern Android development best practices using Jetpack libraries, and distinct feature implementations. It serves as a practical reference for building contemporary Android apps.
 
-Some cases don't have clean architecture and the best patterns, as they can be used to discuss the best approach. 
-Most other examples are coded clean, with unit tets and instrumented tests.
+Some cases don't have clean architecture and the best patterns, as they can be used to discuss the best approach. Most other examples are coded clean, with unit tests and instrumented tests.
 
-Only Medidation UI had a design that was thought as a showcase, the rest is mostly to showcase code.
+Only Meditation UI had a design that was thought as a showcase, the rest is mostly to showcase code.
+
+📖 **[Complete Architecture Documentation](./ARCHITECTURE.md)**
+
+## Table of Contents
+
+- [Architecture Overview (Summary)](#architecture-overview-summary)
+- [Architecture Diagram](#architecture-diagram)
+- [Features Implemented](#features-implemented)
+- [Core Technologies & Architecture](#core-technologies--architecture)
+- [Project Structure Overview](#project-structure-overview)
+- [Getting Started](#getting-started)
+- [Potential Future Enhancements](#potential-future-enhancements)
+- [Screenshots](#screenshots)
+- [Acknowledgements](#acknowledgements)
+
+## Architecture Overview (Summary)
+
+AllThingsAndroid follows **Clean Architecture** principles with clear separation of concerns across multiple layers:
+
+- **UI Layer**: 100% Jetpack Compose screens and components
+- **Presentation Layer**: ViewModels managing UI state and business logic
+- **Domain Layer**: Use cases, entities, and repository interfaces
+- **Data Layer**: Repository implementations, network sources, local database, and caching
+- **Platform Services**: WorkManager, notifications, permissions, and sensor access
+- **External Services**: REST APIs, Firebase integration, analytics, and crash reporting
+
+The architecture promotes **testability**, **maintainability**, and **scalability** while leveraging modern Android development tools and patterns. Navigation is handled through Jetpack Navigation Component with centralized route management and decoupled navigation commands.
+
+For detailed architectural information, see the [complete Architecture Documentation](./ARCHITECTURE.md).
+
+## Architecture Diagram
+
+```mermaid
+flowchart TB
+    %% Subgraphs / Layers
+    subgraph UI_Layer[UI Layer]
+        VIEWS[Composable Screens / Fragments]
+    end
+
+    subgraph Presentation_Layer[Presentation Layer]
+        VM[ViewModels or MVI Controllers]
+        STATE[UI State Models]
+    end
+
+    subgraph Domain_Layer[Domain Layer]
+        USECASES[Use Cases]
+        ENTITIES[Domain Entities]
+        REPO_IF[Repository Interfaces]
+    end
+
+    subgraph Data_Layer[Data Layer]
+        REPO_IMPL[Repository Implementations]
+        NET[Network Source: Retrofit or Ktor]
+        DB[Local DB: Room]
+        CACHE[In-Memory Cache]
+        PREFS[Preferences and DataStore]
+    end
+
+    subgraph Platform_Services[Platform & Services]
+        WORK[WorkManager]
+        NOTIF[Notifications]
+        PERMS[Permissions API]
+        SENS[Sensors / Hardware]
+    end
+
+    subgraph External_Services[External Services]
+        API[REST APIs]
+        FIREBASE[Firebase Services]
+        CRASH[Crash Reporting]
+        ANALYTICS[Analytics SDK]
+    end
+
+    %% Primary Flow
+    VIEWS --> VM
+    VM --> STATE
+    VM --> USECASES
+    USECASES --> REPO_IF
+    REPO_IF <-- REPO_IMPL
+
+    %% Data Sources
+    REPO_IMPL --> NET
+    REPO_IMPL --> DB
+    REPO_IMPL --> CACHE
+    REPO_IMPL --> PREFS
+
+    %% Platform integrations
+    REPO_IMPL --> WORK
+    REPO_IMPL --> NOTIF
+    REPO_IMPL --> PERMS
+    REPO_IMPL --> SENS
+
+    %% External interactions
+    NET --> API
+    NET --> FIREBASE
+
+    WORK --> API
+    NOTIF --> FIREBASE
+    FIREBASE --> ANALYTICS
+    FIREBASE --> CRASH
+    ANALYTICS --> FIREBASE
+```
 
 ## Features Implemented
 
@@ -58,6 +158,19 @@ The application includes the following distinct features and UI showcases:
 ### Setup and Run
 
 1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/arthurabreu/AllThingsAndroid.git
+    cd AllThingsAndroid
+    ```
+
+2.  **Open in Android Studio:**
+    - Launch Android Studio
+    - Open the project folder
+    - Wait for Gradle sync to complete
+
+3.  **Build and Run:**
+    - Select a target device or emulator
+    - Click "Run" or use `Ctrl+F5` (Windows/Linux) / `Cmd+R` (Mac)
 
 ## Potential Future Enhancements
 
@@ -71,6 +184,8 @@ The application includes the following distinct features and UI showcases:
 *   **CI/CD:** Setting up Continuous Integration/Continuous Deployment pipelines.
 
 ![App Demo GIF](path_to_your_gif.gif)
+
+## Screenshots
 
 ## General Screens
 <img width="392" height="876" alt="image" src="https://github.com/user-attachments/assets/2b87f5e6-32fa-4cfc-a70f-1e418319c2fe" />
