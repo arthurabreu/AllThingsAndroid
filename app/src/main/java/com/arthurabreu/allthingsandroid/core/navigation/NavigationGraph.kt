@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.BuggyFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.CalculatorFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DesignPrincipleFeature
@@ -31,6 +32,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFea
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.ui.screen.apishowcase.ApiShowcaseScreen
+import com.arthurabreu.allthingsandroid.ui.screen.buggy.BuggyScreen
 import com.arthurabreu.allthingsandroid.ui.screen.calculator.CalculatorScreen
 import com.arthurabreu.allthingsandroid.ui.screen.designprinciple.DesignPrincipleScreen
 import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
@@ -112,6 +114,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(OlympicsFeature.OlympicsFeature.fullRoute)  {
                     OlympicsScreen()
+                }
+                composable(BuggyFeature.Buggy.fullRoute) {
+                    BuggyScreen()
                 }
 
             }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ApiShowcaseFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.BuggyFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ButtonsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.CalculatorFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.DesignPrincipleFeature
@@ -92,6 +93,10 @@ class HomeViewModel(
 
     fun onOlympicsUiClick() {
         appNavigator.tryNavigateTo(OlympicsFeature.OlympicsFeature.route)
+    }
+
+    fun onBuggyClick() {
+        appNavigator.tryNavigateTo(BuggyFeature.Buggy.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function

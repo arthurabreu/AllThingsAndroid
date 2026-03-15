@@ -24,5 +24,6 @@ fun HomeScreen(
         onSolidUiClick = { viewModel.onSolidUiClick() },
         onDesignPrincipleUiClick = { viewModel.onDesignPrincipleUiClick() },
         onOlympicsUiClick = { viewModel.onOlympicsUiClick() },
+        onBuggyClick = { viewModel.onBuggyClick() },
     )
 }

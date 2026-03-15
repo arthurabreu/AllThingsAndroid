@@ -2,6 +2,7 @@ package com.arthurabreu.allthingsandroid.core.di
 
 import SolidViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.apishowcase.ApiShowcaseViewModel
+import com.arthurabreu.allthingsandroid.ui.viewmodel.buggy.BuggyViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.calculator.CalculatorViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.designprinciple.DesignPrincipleViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
@@ -44,4 +45,5 @@ val viewModelsModule = module {
     viewModel { SolidViewModel() }
     viewModel { DesignPrincipleViewModel() }
     viewModel { OlympicsViewModel(get()) }
+    viewModel { BuggyViewModel(get()) }
 }
