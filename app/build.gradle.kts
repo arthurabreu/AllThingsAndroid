@@ -69,6 +69,9 @@ tasks.withType<Test> {
 dependencies {
 
     implementation(project(":commonscreens"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:common"))
+    implementation(project(":core:model"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

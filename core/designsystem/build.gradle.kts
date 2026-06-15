@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "com.arthurabreu.allthingsandroid.core.designsystem"
 }
+
+dependencies {
+    implementation(libs.androidx.material.icons.extended)
+}

@@ -1,1 +1,6 @@
 com.arthurabreu.allthingsandroid.core.designsystem
+font gothica1_black
+font gothica1_bold
+font gothica1_medium
+font gothica1_regular
+font gothica1_semibold
