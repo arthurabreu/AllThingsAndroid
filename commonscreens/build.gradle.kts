@@ -1,12 +1,11 @@
 plugins {
-    id("com.android.library")
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.arthurabreu.allthingsandroid.commonscreens"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 30
@@ -16,14 +15,11 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2" // adjust as needed
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
@@ -31,21 +27,32 @@ android {
     }
 }
 
-
 dependencies {
-    implementation(commonscreenslibs.androidx.core.ktx)
-    implementation(commonscreenslibs.androidx.lifecycle.viewmodel.compose)
-    implementation(commonscreenslibs.androidx.navigation.compose)
-    implementation(commonscreenslibs.androidx.lifecycle.runtime.ktx)
-    implementation(commonscreenslibs.androidx.activity.compose)
-    implementation(platform(commonscreenslibs.androidx.compose.bom))
-    implementation(commonscreenslibs.androidx.ui)
-    implementation(commonscreenslibs.androidx.ui.graphics)
-    implementation(commonscreenslibs.androidx.ui.tooling)
-    implementation(commonscreenslibs.androidx.ui.tooling.preview)
-    implementation(commonscreenslibs.androidx.material3)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
+
+    // Koin
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.compose)
 
     // ColorPicker
-    implementation(commonscreenslibs.colorpicker.compose)
+    implementation(libs.colorpicker.compose)
+
+    testImplementation(libs.junit.jupiter)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

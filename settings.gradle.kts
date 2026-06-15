@@ -10,10 +10,6 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-
-    plugins {
-        id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
-    }
 }
 
 dependencyResolutionManagement {
@@ -21,17 +17,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
-
-    versionCatalogs {
-        create("commonscreenslibs") {
-            from(files("gradle/commonscreenslibs.versions.toml"))
-        }
-    }
-}
-
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
 rootProject.name = "AllThingsAndroid"

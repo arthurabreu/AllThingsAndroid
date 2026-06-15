@@ -2,7 +2,6 @@ package com.arthurabreu.allthingsandroid.ui.viewmodel.login
 
 import com.arthurabreu.allthingsandroid.ui.viewmodel.BaseViewModelTest
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
-import dalvik.annotation.TestTarget
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.junit5.MockKExtension
@@ -16,8 +15,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.Mockito.verify
-import kotlin.test.Test
+import org.junit.jupiter.api.Test
 
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

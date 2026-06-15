@@ -18,9 +18,10 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.TextFieldsFeature
 import com.arthurabreu.allthingsandroid.utils.logger.ClassLogger
 import com.arthurabreu.allthingsandroid.utils.logger.logApiExecution
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val appNavigator: AppNavigator,
@@ -126,12 +127,11 @@ class HomeViewModel(
 -> HomeViewModel$loadApiData$1.invokeSuspend()          <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
    BaseContinuationImpl.resumeWith()
      */
-    private fun performCalculation(a: Int, b: Int): Int {
-        // To call a suspend function, we need a coroutine scope
-        return runBlocking {
+    private fun performCalculation(a: Int, b: Int) {
+        viewModelScope.launch {
             logApiExecution(logger) {
                 println("Performing calculation...")
-                return@logApiExecution a + b // The block returns the result
+                a + b
             }
         }
     }

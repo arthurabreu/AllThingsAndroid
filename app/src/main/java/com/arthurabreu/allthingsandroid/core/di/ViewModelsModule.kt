@@ -10,7 +10,7 @@ import com.arthurabreu.allthingsandroid.ui.viewmodel.login.LoginViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.olympics.OlympicsViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.profile.ProfileViewmodel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.settings.SettingsViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
 

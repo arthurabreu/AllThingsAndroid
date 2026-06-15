@@ -1,19 +1,18 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21"
-    id("com.google.devtools.ksp") version "2.2.0-2.0.2"
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.arthurabreu.allthingsandroid"
-    compileSdk = 35
+    compileSdk = 36
 
     /*
-     Configures the KSP \(Kotlin Symbol Processing\) plugin to pass an argument to the Room processor.
+     Configures the KSP (Kotlin Symbol Processing) plugin to pass an argument to the Room processor.
 
-     The argument `room.schemaLocation` specifies the directory \(`$projectDir/schemas`\) where Room exports database schemas as JSON files.
+     The argument `room.schemaLocation` specifies the directory (`$projectDir/schemas`) where Room exports database schemas as JSON files.
      These schema files are used to track changes over time, which is essential for managing database migrations.
  */
     ksp {
@@ -23,7 +22,7 @@ android {
     defaultConfig {
         applicationId = "com.arthurabreu.allthingsandroid"
         minSdk = 30
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -55,29 +54,16 @@ android {
         compose = true
     }
 
-    tasks.withType<Test> {
-        useJUnitPlatform() // Enable JUnit 5
-    }
-
-    /*
-     * Configures packaging options to resolve file conflicts during the APK build process.
-     *
-     * The `packagingOptions` block specifies rules for how files from different dependencies are merged.
-     * The `resources.excludes` directive prevents specific files from being included in the final APK.
-     *
-     * This rule excludes `/META-INF/LICENSE.md` to resolve build errors caused by multiple
-     * dependencies including a file with the same path. The leading slash `/` ensures the path
-     * is matched from the root of the JAR archive.
-     */
     packaging {
         resources {
             excludes.add("META-INF/LICENSE.md")
             excludes.add("META-INF/LICENSE-notice.md")
         }
     }
-    kotlinOptions {
-        freeCompilerArgs = listOf("-XXLanguage:+PropertyParamAnnotationDefaultTargetMode")
-    }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 dependencies {
@@ -92,9 +78,11 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.kotlinx.serialization.json)
 
     // Koin
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.ktor)
@@ -126,22 +114,18 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
 
     // Tests
-    // JUnit 5 and MockK
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.vintage.engine)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
     testImplementation(libs.mockk)
     androidTestImplementation(libs.mockk.android)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(kotlin("test"))
-    testRuntimeOnly(libs.junit.jupiter.engine)
-
-    // For InstantTaskExecutorRule functionality (even when creating an extension)
+    testImplementation(kotlin("reflect"))
     testImplementation(libs.androidx.core.testing)
 
-    // For Coroutines testing (TestCoroutineDispatcher, etc.)
-    testImplementation(libs.kotlinx.coroutines.test)
-
-    // Espresso
+    // Espresso + Compose UI tests
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)

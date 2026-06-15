@@ -7,8 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import com.arthurabreu.allthingsandroid.core.navigation.NavigationGraph
 import com.arthurabreu.allthingsandroid.ui.theme.AllThingsAndroidTheme
 import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /*
@@ -17,7 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModel()
-    private val activityScope = CoroutineScope(Dispatchers.Main) // Use Main scope for UI operations
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
