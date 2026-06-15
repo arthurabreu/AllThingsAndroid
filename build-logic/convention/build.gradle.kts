@@ -54,5 +54,9 @@ gradlePlugin {
             id = "allthingsandroid.android.test"
             implementationClass = "AndroidTestConventionPlugin"
         }
+        register("androidKover") {
+            id = "allthingsandroid.android.kover"
+            implementationClass = "AndroidKoverConventionPlugin"
+        }
     }
 }

@@ -1,5 +1,0 @@
-int font gothica1_black 0x0
-int font gothica1_bold 0x0
-int font gothica1_medium 0x0
-int font gothica1_regular 0x0
-int font gothica1_semibold 0x0

@@ -15,5 +15,7 @@ dependencies {
     api(libs.junit.platform.launcher)
     api(libs.mockk)
     api(libs.kotlinx.coroutines.test)
+    api(libs.turbine)
     api(libs.androidx.core.testing)
+    api(libs.robolectric)
 }

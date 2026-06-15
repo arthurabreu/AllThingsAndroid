@@ -10,6 +10,7 @@ class AndroidTestConventionPlugin : Plugin<Project> {
             add("testRuntimeOnly", catalog.findLibrary("junit-platform-launcher").get())
             add("testImplementation", catalog.findLibrary("mockk").get())
             add("testImplementation", catalog.findLibrary("kotlinx-coroutines-test").get())
+            add("testImplementation", catalog.findLibrary("turbine").get())
             add("androidTestImplementation", catalog.findLibrary("mockk-android").get())
             add("androidTestImplementation", catalog.findLibrary("androidx-espresso-core").get())
         }

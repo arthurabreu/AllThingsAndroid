@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kover)
 }
 
 android {
@@ -132,4 +133,32 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Turbine for StateFlow / Flow testing
+    testImplementation(libs.turbine)
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                packages("*.di", "*.core.di")
+                packages("*.navigation", "*.destinations")
+                packages("*.designsystem.theme", "*.designsystem.tokens")
+                classes(
+                    "*MainActivity*",
+                    "*App",
+                    "*Service*",
+                    "*Worker*",
+                    "*BuildConfig*",
+                )
+                annotatedBy("androidx.compose.ui.tooling.preview.Preview")
+            }
+        }
+        verify {
+            rule {
+                minBound(40)
+            }
+        }
+    }
 }
