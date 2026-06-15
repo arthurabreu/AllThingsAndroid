@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         google {
             content {
@@ -22,5 +23,29 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "AllThingsAndroid"
+
+// Legacy modules (being migrated)
 include(":app")
 include(":commonscreens")
+
+// Core modules
+include(":core:common")
+include(":core:model")
+include(":core:designsystem")
+include(":core:ui")
+include(":core:domain")
+include(":core:data")
+include(":core:testing")
+
+// Feature modules
+include(":feature:home")
+include(":feature:apishowcase")
+include(":feature:calculator")
+include(":feature:login")
+include(":feature:settings")
+include(":feature:profile")
+include(":feature:download")
+include(":feature:meditation")
+include(":feature:solid")
+include(":feature:designprinciple")
+include(":feature:olympics")

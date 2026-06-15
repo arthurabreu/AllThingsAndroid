@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml:2:13-83
+INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml:2:13-83
+	package
+		INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml
+	xmlns:android
+		ADDED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml:2:23-81
+uses-sdk
+INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml reason: use-sdk injection requested
+INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml
+INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml
+	android:targetSdkVersion
+		INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml
+	android:minSdkVersion
+		INJECTED from /home/arthuralien/StudioProjects/AllThingsAndroid/core/ui/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest9191368246728456707.xml
