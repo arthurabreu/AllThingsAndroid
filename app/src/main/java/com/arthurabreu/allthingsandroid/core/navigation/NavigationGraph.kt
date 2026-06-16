@@ -50,8 +50,8 @@ import com.arthurabreu.allthingsandroid.feature.maps.presentation.screen.MapsScr
 import com.arthurabreu.allthingsandroid.feature.notifications.presentation.screen.NotificationsScreen
 import com.arthurabreu.allthingsandroid.feature.player.presentation.screen.PlayerScreen
 import com.arthurabreu.allthingsandroid.ui.screen.olympics.OlympicsScreen
-import com.arthurabreu.allthingsandroid.ui.screen.profile.ProfileScreen
-import com.arthurabreu.allthingsandroid.ui.screen.settings.SettingsScreen
+import com.arthurabreu.allthingsandroid.feature.profile.presentation.screen.ProfileScreen
+import com.arthurabreu.allthingsandroid.feature.settings.presentation.screen.SettingsScreen
 import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
 import com.arthurabreu.commonscreens.ui.screens.buttons.ButtonScreen
 import com.arthurabreu.commonscreens.ui.screens.lists.ListsScreen

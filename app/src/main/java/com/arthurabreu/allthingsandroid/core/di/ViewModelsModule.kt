@@ -8,8 +8,6 @@ import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.home.HomeViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.login.LoginViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.olympics.OlympicsViewModel
-import com.arthurabreu.allthingsandroid.ui.viewmodel.profile.ProfileViewmodel
-import com.arthurabreu.allthingsandroid.ui.viewmodel.settings.SettingsViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
@@ -29,8 +27,6 @@ val viewModelsModule = module {
             logger = get(parameters = { parametersOf(HomeViewModel::class.java.simpleName) })
     ) }
 
-    viewModel { ProfileViewmodel(get()) }
-    viewModel { SettingsViewModel(get()) }
     viewModel { LoginViewModel(get()) }
     viewModel { DownloadViewModel() }
     viewModel {
