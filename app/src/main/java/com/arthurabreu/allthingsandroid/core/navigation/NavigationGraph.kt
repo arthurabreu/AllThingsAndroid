@@ -25,8 +25,11 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.HomeFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.AuthFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.CloudDbFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.FeedFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MapsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.NotificationsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.OlympicsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
@@ -39,8 +42,11 @@ import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.screen.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.screen.login.LoginScreen
 import com.arthurabreu.allthingsandroid.ui.screen.meditation.HomeMeditation
+import com.arthurabreu.allthingsandroid.feature.auth.presentation.screen.AuthScreen
+import com.arthurabreu.allthingsandroid.feature.clouddb.presentation.screen.CloudDbScreen
 import com.arthurabreu.allthingsandroid.feature.feed.presentation.screen.FeedScreen
 import com.arthurabreu.allthingsandroid.feature.maps.presentation.screen.MapsScreen
+import com.arthurabreu.allthingsandroid.feature.notifications.presentation.screen.NotificationsScreen
 import com.arthurabreu.allthingsandroid.ui.screen.olympics.OlympicsScreen
 import com.arthurabreu.allthingsandroid.ui.screen.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.screen.settings.SettingsScreen
@@ -122,6 +128,15 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(MapsFeature.Maps.fullRoute) {
                     MapsScreen()
+                }
+                composable(AuthFeature.Auth.fullRoute) {
+                    AuthScreen()
+                }
+                composable(CloudDbFeature.CloudDb.fullRoute) {
+                    CloudDbScreen()
+                }
+                composable(NotificationsFeature.Notifications.fullRoute) {
+                    NotificationsScreen()
                 }
             }
         }

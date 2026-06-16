@@ -26,5 +26,8 @@ fun HomeScreen(
         onOlympicsUiClick = { viewModel.onOlympicsUiClick() },
         onFeedClick = { viewModel.onFeedClick() },
         onMapsClick = { viewModel.onMapsClick() },
+        onAuthClick = { viewModel.onAuthClick() },
+        onCloudDbClick = { viewModel.onCloudDbClick() },
+        onNotificationsClick = { viewModel.onNotificationsClick() },
     )
 }

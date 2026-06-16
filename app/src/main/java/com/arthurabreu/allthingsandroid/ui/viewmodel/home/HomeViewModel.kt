@@ -11,8 +11,11 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFea
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.AuthFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.CloudDbFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.FeedFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MapsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.NotificationsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.OlympicsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
@@ -103,6 +106,18 @@ class HomeViewModel(
 
     fun onMapsClick() {
         appNavigator.tryNavigateTo(MapsFeature.Maps.route)
+    }
+
+    fun onAuthClick() {
+        appNavigator.tryNavigateTo(AuthFeature.Auth.route)
+    }
+
+    fun onCloudDbClick() {
+        appNavigator.tryNavigateTo(CloudDbFeature.CloudDb.route)
+    }
+
+    fun onNotificationsClick() {
+        appNavigator.tryNavigateTo(NotificationsFeature.Notifications.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function

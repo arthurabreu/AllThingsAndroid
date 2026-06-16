@@ -54,6 +54,16 @@ coil = "3.2.0"
 mapsCompose = "8.3.0"
 secretsGradlePlugin = "2.0.1"
 
+# Firebase
+firebaseBom = "34.11.0"
+googleServicesPlugin = "4.4.2"
+firebaseCrashlyticsPlugin = "3.0.3"
+kotlinxCoroutinesPlayServices = "1.10.1"
+
+# Credentials (Google Sign-In)
+credentialsVersion = "1.5.0"
+googleid = "1.1.1"
+
 # ColorPicker (JitPack)
 colorpickerCompose = "1.1.2"
 
@@ -134,6 +144,21 @@ coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.r
 maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsCompose" }
 
+# Firebase BOM — versions for BOM-managed entries are omitted intentionally
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-config = { module = "com.google.firebase:firebase-config" }
+kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinxCoroutinesPlayServices" }
+
+# Credentials (Google Sign-In via Credential Manager)
+androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsVersion" }
+androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsVersion" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
+
 # ColorPicker (JitPack — requires jitpack.io in dependencyResolutionManagement.repositories)
 colorpicker-compose = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpickerCompose" }
 
@@ -154,3 +179,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 secrets-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServicesPlugin" }
+firebase-crashlytics-plugin = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }

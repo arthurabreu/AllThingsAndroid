@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kover)
     alias(libs.plugins.secrets.gradle.plugin)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics.plugin)
 }
 
 secrets {
@@ -81,6 +83,16 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":feature:feed"))
     implementation(project(":feature:maps"))
+    implementation(project(":feature:auth"))
+    implementation(project(":feature:clouddb"))
+    implementation(project(":feature:notifications"))
+
+    // Firebase BOM
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.config)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
