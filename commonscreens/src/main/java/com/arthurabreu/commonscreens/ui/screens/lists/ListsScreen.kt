@@ -1,14 +1,18 @@
 package com.arthurabreu.commonscreens.ui.screens.lists
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -16,11 +20,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.arthurabreu.commonscreens.ui.previewdata.lists.ListStatesProvider
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppCard
+import com.arthurabreu.allthingsandroid.core.designsystem.theme.AppTheme
 import com.arthurabreu.commonscreens.ui.composables.lists.ListsComposable
+import com.arthurabreu.commonscreens.ui.previewdata.lists.ListStatesProvider
 
 /**
  * Tela de exemplo que demonstra vários estilos de lista usando ListsComposable,
@@ -34,33 +42,58 @@ fun ListsScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Galeria de Estilos de Lista") },
+                title = { Text("List Style Gallery", style = MaterialTheme.typography.titleLarge) },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                )
+                    containerColor = MaterialTheme.colorScheme.surface,
+                ),
             )
         }
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding) // Aplica o padding do Scaffold
-                .padding(horizontal = 16.dp), // Padding lateral para todo o conteúdo da LazyColumn
-            contentPadding = PaddingValues(vertical = 24.dp), // Padding no topo e base da LazyColumn
-            verticalArrangement = Arrangement.spacedBy(32.dp) // Espaço vertical entre cada bloco ListsComposable
+                .padding(innerPadding)
+                .padding(horizontal = AppTheme.spacing.medium),
+            contentPadding = PaddingValues(vertical = AppTheme.spacing.medium),
+            verticalArrangement = Arrangement.spacedBy(AppTheme.spacing.medium),
         ) {
             itemsIndexed(listStatesToDisplay) { index, listState ->
-                // Cada ListsComposable é renderizada aqui
-                // Você pode adicionar um título geral para cada seção se quiser,
-                // mas o listState.listTitle já deve servir para isso.
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        // Limita a altura de cada exemplo para melhor visualização na galeria
-                        .heightIn(min = 100.dp, max = 400.dp)
-                ) {
-                    ListsComposable(state = listState)
+                AppCard(modifier = Modifier.fillMaxWidth()) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(AppTheme.spacing.medium),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(28.dp)
+                                .background(
+                                    color = MaterialTheme.colorScheme.primaryContainer,
+                                    shape = CircleShape,
+                                ),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                text = "%02d".format(index + 1),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            )
+                        }
+                        Text(
+                            text = listState.listTitle ?: "Untitled",
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = Modifier.padding(start = AppTheme.spacing.medium),
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .heightIn(min = 100.dp, max = 320.dp)
+                            .clip(MaterialTheme.shapes.large),
+                    ) {
+                        ListsComposable(state = listState)
+                    }
                 }
             }
         }

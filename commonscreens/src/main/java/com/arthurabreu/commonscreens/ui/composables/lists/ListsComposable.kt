@@ -40,16 +40,6 @@ fun ListsComposable(state: AllListsState) {
             .fillMaxSize() // A Column externa preenche o espaço
             .background(state.listBackgroundColor) // O fundo é aplicado à Column externa
     ) {
-        state.listTitle?.let { title ->
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleLarge, // Ou outro estilo de sua preferência
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(state.titlePadding) // Use o padding específico do título
-            )
-        }
-
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
