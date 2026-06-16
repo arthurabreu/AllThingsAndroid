@@ -8,5 +8,6 @@ plugins {
     alias(libs.plugins.secrets.gradle.plugin) apply false
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.firebase.crashlytics.plugin) apply false
+    alias(libs.plugins.ben.manes.versions)
 }
 
