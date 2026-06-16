@@ -20,13 +20,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.arthurabreu.allthingsandroid.core.designsystem.theme.AppTheme
 import com.arthurabreu.allthingsandroid.feature.feed.domain.model.FeedItem
 
 @Composable
 fun FeedItemCard(item: FeedItem, modifier: Modifier = Modifier) {
     Card(modifier = modifier.fillMaxWidth()) {
         Row(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(AppTheme.spacing.medium),
             verticalAlignment = Alignment.Top,
         ) {
             AsyncImage(
@@ -37,7 +38,7 @@ fun FeedItemCard(item: FeedItem, modifier: Modifier = Modifier) {
                     .size(72.dp)
                     .clip(RoundedCornerShape(8.dp)),
             )
-            Spacer(Modifier.width(12.dp))
+            Spacer(Modifier.width(AppTheme.spacing.medium))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = item.title,
@@ -45,7 +46,7 @@ fun FeedItemCard(item: FeedItem, modifier: Modifier = Modifier) {
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                 )
-                Spacer(Modifier.height(4.dp))
+                Spacer(Modifier.height(AppTheme.spacing.extraSmall))
                 Text(
                     text = item.body,
                     style = MaterialTheme.typography.bodySmall,
@@ -53,7 +54,7 @@ fun FeedItemCard(item: FeedItem, modifier: Modifier = Modifier) {
                     overflow = TextOverflow.Ellipsis,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                Spacer(Modifier.height(4.dp))
+                Spacer(Modifier.height(AppTheme.spacing.extraSmall))
                 Text(
                     text = item.authorName,
                     style = MaterialTheme.typography.labelSmall,

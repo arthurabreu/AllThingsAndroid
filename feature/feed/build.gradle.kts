@@ -1,5 +1,6 @@
 plugins {
     id("allthingsandroid.android.feature")
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
 }
 
