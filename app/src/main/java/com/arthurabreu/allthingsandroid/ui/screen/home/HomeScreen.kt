@@ -24,5 +24,7 @@ fun HomeScreen(
         onSolidUiClick = { viewModel.onSolidUiClick() },
         onDesignPrincipleUiClick = { viewModel.onDesignPrincipleUiClick() },
         onOlympicsUiClick = { viewModel.onOlympicsUiClick() },
+        onFeedClick = { viewModel.onFeedClick() },
+        onMapsClick = { viewModel.onMapsClick() },
     )
 }

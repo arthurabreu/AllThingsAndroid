@@ -27,6 +27,8 @@ fun HomeScreen(
     onSolidUiClick: () -> Unit,
     onDesignPrincipleUiClick: () -> Unit,
     onOlympicsUiClick: () -> Unit,
+    onFeedClick: () -> Unit,
+    onMapsClick: () -> Unit,
 ) {
     val menuButtons = listOf(
         MenuButtonInfo(R.string.go_to_profile, onProfileClick),
@@ -43,6 +45,8 @@ fun HomeScreen(
         MenuButtonInfo(R.string.go_to_solid_example, onSolidUiClick),
         MenuButtonInfo(R.string.go_to_design_example, onDesignPrincipleUiClick),
         MenuButtonInfo(R.string.go_to_olympics_example, onOlympicsUiClick),
+        MenuButtonInfo(R.string.go_to_feed_example, onFeedClick),
+        MenuButtonInfo(R.string.go_to_maps_example, onMapsClick),
     )
 
     LazyColumn(

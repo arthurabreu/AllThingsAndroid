@@ -11,6 +11,8 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.DownloadFea
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.FeedFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.MapsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.OlympicsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
@@ -93,6 +95,14 @@ class HomeViewModel(
 
     fun onOlympicsUiClick() {
         appNavigator.tryNavigateTo(OlympicsFeature.OlympicsFeature.route)
+    }
+
+    fun onFeedClick() {
+        appNavigator.tryNavigateTo(FeedFeature.Feed.route)
+    }
+
+    fun onMapsClick() {
+        appNavigator.tryNavigateTo(MapsFeature.Maps.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function

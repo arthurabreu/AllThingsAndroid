@@ -4,6 +4,12 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kover)
+    alias(libs.plugins.secrets.gradle.plugin)
+}
+
+secrets {
+    propertiesFileName = "local.properties"
+    defaultPropertiesFileName = "secrets.defaults.properties"
 }
 
 android {
@@ -73,6 +79,8 @@ dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:common"))
     implementation(project(":core:model"))
+    implementation(project(":feature:feed"))
+    implementation(project(":feature:maps"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
