@@ -13,12 +13,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.ui.states.DownloadState
 import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
 import com.arthurabreu.commonscreens.ui.screens.download.DownloadProgress
 import com.arthurabreu.commonscreens.ui.screens.download.StartDownload
 import com.arthurabreu.commonscreens.utils.ColorPickerDialog
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 
 
 @Composable
@@ -28,11 +31,13 @@ fun DownloadScreen(
     val downloadState by viewModel.downloadState.collectAsState()
     val progressColor by viewModel.progressColor.collectAsState()
     val showDialog by viewModel.showColorPicker.collectAsState()
+    val appNavigator: AppNavigator = koinInject()
 
-
+    AppScaffold(title = "Downloads", onBack = { appNavigator.tryNavigateBack() }) { padding ->
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(padding)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -78,6 +83,7 @@ fun DownloadScreen(
                 onDismiss = { viewModel.hideColorPicker() }
             )
         }
+    }
     }
 }
 

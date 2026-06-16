@@ -14,9 +14,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.arthurabreu.allthingsandroid.commonscreens.R
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.commonscreens.ui.composables.login.LoginComposable
 import com.arthurabreu.commonscreens.ui.state.login.AllLoginsState
 import com.arthurabreu.commonscreens.ui.state.textfields.AllTextFieldsState
+import org.koin.compose.koinInject
 
 @Composable
 fun LoginScreenFake() {
@@ -54,8 +57,11 @@ fun LoginScreenFake() {
         iconContentDescription = stringResource(R.string.app_icon),
         allTextFieldsState = numberState
     )
+    val appNavigator: AppNavigator = koinInject()
 
-    LoginComposable(state = loginState)
+    AppScaffold(title = "Login (Fake)", onBack = { appNavigator.tryNavigateBack() }) {
+        LoginComposable(state = loginState)
+    }
 }
 
 @Preview(showBackground = true)

@@ -28,9 +28,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -41,20 +39,24 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.media3.ui.compose.PlayerSurface
 import androidx.media3.ui.compose.SURFACE_TYPE_SURFACE_VIEW
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.feature.player.presentation.viewmodel.PlayerViewModel
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerScreen(viewModel: PlayerViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val appNavigator: AppNavigator = koinInject()
 
     DisposableEffect(Unit) {
         onDispose { if (viewModel.player.isPlaying) viewModel.player.pause() }
     }
 
-    Scaffold(topBar = { TopAppBar(title = { Text("Media3 Player") }) }) { padding ->
+    AppScaffold(title = "Player", onBack = { appNavigator.tryNavigateBack() }) { padding ->
         Column(modifier = Modifier.fillMaxSize().padding(padding)) {
             // Video surface
             Box(

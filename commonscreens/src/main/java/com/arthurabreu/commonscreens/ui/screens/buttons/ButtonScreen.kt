@@ -1,6 +1,7 @@
 package com.arthurabreu.commonscreens.ui.screens.buttons
 
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
@@ -9,8 +10,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.commonscreens.ui.composables.buttons.ButtonComposable
 import com.arthurabreu.commonscreens.ui.previewdata.buttons.ButtonStatesProvider
+import org.koin.compose.koinInject
 
 /*
     * Example of how to create and configure button states for use in a Composable.
@@ -18,13 +22,18 @@ import com.arthurabreu.commonscreens.ui.previewdata.buttons.ButtonStatesProvider
 @Composable
 fun ButtonScreen() {
     val buttonStates = ButtonStatesProvider.getAllButtonStates()
-    LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        item {
-            buttonStates.forEach { state ->
-                ButtonComposable(state = state)
-                Spacer(modifier = Modifier.size(16.dp))
+    val appNavigator: AppNavigator = koinInject()
+
+    AppScaffold(title = "Buttons", onBack = { appNavigator.tryNavigateBack() }) { padding ->
+        LazyColumn(
+            modifier = Modifier.padding(padding),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            item {
+                buttonStates.forEach { state ->
+                    ButtonComposable(state = state)
+                    Spacer(modifier = Modifier.size(16.dp))
+                }
             }
         }
     }

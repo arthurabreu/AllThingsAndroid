@@ -37,6 +37,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arthurabreu.allthingsandroid.R
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.data.meditation.FeatureMeditation
 import com.arthurabreu.allthingsandroid.ui.theme.AquaBlue
 import com.arthurabreu.allthingsandroid.ui.theme.Beige1
@@ -57,13 +59,18 @@ import com.arthurabreu.allthingsandroid.ui.theme.OrangeYellow2
 import com.arthurabreu.allthingsandroid.ui.theme.OrangeYellow3
 import com.arthurabreu.allthingsandroid.ui.theme.TextWhite
 import com.arthurabreu.allthingsandroid.utils.standardQuadFromTo
+import org.koin.compose.koinInject
 
 @Composable
 fun HomeMeditation() {
+    val appNavigator: AppNavigator = koinInject()
+
+    AppScaffold(title = "Meditation", onBack = { appNavigator.tryNavigateBack() }) { padding ->
     Box(
         modifier = Modifier
             .background(DeepBlue)
             .fillMaxSize()
+            .padding(padding)
     ) {
         Column {
             GreetingSection()
@@ -118,6 +125,7 @@ fun HomeMeditation() {
                 ),
             modifier = Modifier.align(Alignment.BottomCenter)
         )
+    }
     }
 }
 

@@ -10,22 +10,30 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.ui.viewmodel.olympics.OlympicsViewModel
 import com.arthurabreu.commonscreens.ui.composables.OlympicsComposable
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 
 @Composable
 fun OlympicsScreen(
     viewModel: OlympicsViewModel = koinViewModel()
 ) {
     val olympicsState by viewModel.olympicsState.collectAsState()
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        OlympicsComposable(state = olympicsState)
+    val appNavigator: AppNavigator = koinInject()
+
+    AppScaffold(title = "Olympics", onBack = { appNavigator.tryNavigateBack() }) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            OlympicsComposable(state = olympicsState)
+        }
     }
 }

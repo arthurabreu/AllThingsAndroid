@@ -16,11 +16,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -37,10 +35,13 @@ import androidx.compose.ui.unit.dp
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 import com.arthurabreu.allthingsandroid.feature.auth.presentation.viewmodel.AuthViewModel
 
 private const val WEB_CLIENT_ID = "960242731955-nl7kd62pl19tr9glguv3uluhr15f9c22.apps.googleusercontent.com"
@@ -56,6 +57,7 @@ fun AuthScreen(viewModel: AuthViewModel = koinViewModel()) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val appNavigator: AppNavigator = koinInject()
 
     LaunchedEffect(uiState.error) {
         uiState.error?.let {
@@ -64,15 +66,16 @@ fun AuthScreen(viewModel: AuthViewModel = koinViewModel()) {
         }
     }
 
-    Scaffold(
-        topBar = { TopAppBar(title = { Text("Firebase Auth") }) },
+    AppScaffold(
+        title = "Auth",
+        onBack = { appNavigator.tryNavigateBack() },
         snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { padding ->
         if (uiState.isLoading) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
             }
-            return@Scaffold
+            return@AppScaffold
         }
 
         Column(

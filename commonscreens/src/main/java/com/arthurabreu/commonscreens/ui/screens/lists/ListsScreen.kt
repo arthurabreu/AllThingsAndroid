@@ -15,10 +15,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,9 +23,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arthurabreu.allthingsandroid.core.designsystem.component.AppCard
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
 import com.arthurabreu.allthingsandroid.core.designsystem.theme.AppTheme
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.commonscreens.ui.composables.lists.ListsComposable
 import com.arthurabreu.commonscreens.ui.previewdata.lists.ListStatesProvider
+import org.koin.compose.koinInject
 
 /**
  * Tela de exemplo que demonstra vários estilos de lista usando ListsComposable,
@@ -38,16 +38,11 @@ import com.arthurabreu.commonscreens.ui.previewdata.lists.ListStatesProvider
 @Composable
 fun ListsScreen() {
     val listStatesToDisplay = ListStatesProvider.getAllListStates()
+    val appNavigator: AppNavigator = koinInject()
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("List Style Gallery", style = MaterialTheme.typography.titleLarge) },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        }
+    AppScaffold(
+        title = "List Style Gallery",
+        onBack = { appNavigator.tryNavigateBack() },
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier

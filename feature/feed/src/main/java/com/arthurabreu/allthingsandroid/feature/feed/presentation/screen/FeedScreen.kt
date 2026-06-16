@@ -5,12 +5,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.LoadState
@@ -20,27 +15,25 @@ import androidx.paging.compose.itemKey
 import com.arthurabreu.allthingsandroid.core.designsystem.component.AppEmptyState
 import com.arthurabreu.allthingsandroid.core.designsystem.component.AppErrorState
 import com.arthurabreu.allthingsandroid.core.designsystem.component.AppLoadingIndicator
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
 import com.arthurabreu.allthingsandroid.core.designsystem.theme.AppTheme
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.feature.feed.domain.model.FeedItem
 import com.arthurabreu.allthingsandroid.feature.feed.presentation.components.FeedItemCard
 import com.arthurabreu.allthingsandroid.feature.feed.presentation.components.FeedLoadStateFooter
 import com.arthurabreu.allthingsandroid.feature.feed.presentation.viewmodel.FeedViewModel
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen(viewModel: FeedViewModel = koinViewModel()) {
     val items: LazyPagingItems<FeedItem> = viewModel.feedPagingData.collectAsLazyPagingItems()
+    val appNavigator: AppNavigator = koinInject()
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Feed", style = MaterialTheme.typography.titleLarge) },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                ),
-            )
-        },
+    AppScaffold(
+        title = "Feed",
+        onBack = { appNavigator.tryNavigateBack() },
     ) { paddingValues ->
         when (val refresh = items.loadState.refresh) {
             is LoadState.Loading -> AppLoadingIndicator(

@@ -8,7 +8,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -17,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
+import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.feature.maps.R
 import com.arthurabreu.allthingsandroid.feature.maps.presentation.components.PoiBottomSheet
 import com.arthurabreu.allthingsandroid.feature.maps.presentation.viewmodel.MapsViewModel
@@ -27,12 +28,14 @@ import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.clustering.Clustering
 import com.google.maps.android.compose.rememberCameraPositionState
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 
 @Composable
 fun MapsScreen(viewModel: MapsViewModel = koinViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val cameraPositionState = rememberCameraPositionState()
+    val appNavigator: AppNavigator = koinInject()
 
     LaunchedEffect(uiState.cameraTarget, uiState.cameraZoom) {
         cameraPositionState.animate(
@@ -40,7 +43,7 @@ fun MapsScreen(viewModel: MapsViewModel = koinViewModel()) {
         )
     }
 
-    Scaffold { paddingValues ->
+    AppScaffold(title = "Maps", onBack = { appNavigator.tryNavigateBack() }) { paddingValues ->
         Box(modifier = Modifier.fillMaxSize().padding(paddingValues)) {
             GoogleMap(
                 modifier = Modifier.fillMaxSize(),
