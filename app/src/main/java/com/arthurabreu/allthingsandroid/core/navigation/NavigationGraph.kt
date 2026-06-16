@@ -31,6 +31,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.FeedFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MapsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.NotificationsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.OlympicsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.PlayerFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeature
@@ -47,6 +48,7 @@ import com.arthurabreu.allthingsandroid.feature.clouddb.presentation.screen.Clou
 import com.arthurabreu.allthingsandroid.feature.feed.presentation.screen.FeedScreen
 import com.arthurabreu.allthingsandroid.feature.maps.presentation.screen.MapsScreen
 import com.arthurabreu.allthingsandroid.feature.notifications.presentation.screen.NotificationsScreen
+import com.arthurabreu.allthingsandroid.feature.player.presentation.screen.PlayerScreen
 import com.arthurabreu.allthingsandroid.ui.screen.olympics.OlympicsScreen
 import com.arthurabreu.allthingsandroid.ui.screen.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.screen.settings.SettingsScreen
@@ -137,6 +139,9 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(NotificationsFeature.Notifications.fullRoute) {
                     NotificationsScreen()
+                }
+                composable(PlayerFeature.Player.fullRoute) {
+                    PlayerScreen()
                 }
             }
         }

@@ -29,5 +29,6 @@ fun HomeScreen(
         onAuthClick = { viewModel.onAuthClick() },
         onCloudDbClick = { viewModel.onCloudDbClick() },
         onNotificationsClick = { viewModel.onNotificationsClick() },
+        onPlayerClick = { viewModel.onPlayerClick() },
     )
 }

@@ -86,6 +86,7 @@ dependencies {
     implementation(project(":feature:auth"))
     implementation(project(":feature:clouddb"))
     implementation(project(":feature:notifications"))
+    implementation(project(":feature:player"))
 
     // Firebase BOM
     implementation(platform(libs.firebase.bom))

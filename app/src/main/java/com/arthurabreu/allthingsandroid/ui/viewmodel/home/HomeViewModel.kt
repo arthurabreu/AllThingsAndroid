@@ -17,6 +17,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.FeedFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MapsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.NotificationsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.OlympicsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.PlayerFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeature
@@ -118,6 +119,10 @@ class HomeViewModel(
 
     fun onNotificationsClick() {
         appNavigator.tryNavigateTo(NotificationsFeature.Notifications.route)
+    }
+
+    fun onPlayerClick() {
+        appNavigator.tryNavigateTo(PlayerFeature.Player.route)
     }
 
     // Shows that the logger can be used to log the execution of a suspend function

@@ -69,6 +69,7 @@
     <string name="go_to_auth_example">Go to Firebase Auth</string>
     <string name="go_to_clouddb_example">Go to Cloud DB (Firestore)</string>
     <string name="go_to_notifications_example">Go to Notifications</string>
+    <string name="go_to_player_example">Go to Media3 Player</string>
     <string name="domain_data_from_api_db"><![CDATA[\nDomain data from api -> db: \n\n%1$s]]></string>
     <string name="label">Label</string>
 </resources>

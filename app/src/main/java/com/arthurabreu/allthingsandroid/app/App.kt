@@ -10,6 +10,7 @@ import com.arthurabreu.allthingsandroid.feature.clouddb.di.cloudDbModule
 import com.arthurabreu.allthingsandroid.feature.feed.di.feedModule
 import com.arthurabreu.allthingsandroid.feature.maps.di.mapsModule
 import com.arthurabreu.allthingsandroid.feature.notifications.di.notificationsModule
+import com.arthurabreu.allthingsandroid.feature.player.di.playerModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
@@ -31,6 +32,7 @@ class App : Application(){
                 authModule,
                 cloudDbModule,
                 notificationsModule,
+                playerModule,
             )
         }
     }
