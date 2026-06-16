@@ -15,4 +15,4 @@ build/
 .externalNativeBuild
 .cxx
 local.properties
-maps-api-key.txt
+google-services.json
