@@ -43,7 +43,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import com.arthurabreu.allthingsandroid.feature.auth.presentation.viewmodel.AuthViewModel
 
-private const val WEB_CLIENT_ID = "YOUR_WEB_CLIENT_ID"
+private const val WEB_CLIENT_ID = "960242731955-nl7kd62pl19tr9glguv3uluhr15f9c22.apps.googleusercontent.com"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
