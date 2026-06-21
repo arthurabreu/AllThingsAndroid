@@ -1,6 +1,5 @@
 package com.arthurabreu.allthingsandroid.core.di
 
-import SolidViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.apishowcase.ApiShowcaseViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.calculator.CalculatorViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.designprinciple.DesignPrincipleViewModel
@@ -8,6 +7,7 @@ import com.arthurabreu.allthingsandroid.ui.viewmodel.download.DownloadViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.home.HomeViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.login.LoginViewModel
 import com.arthurabreu.allthingsandroid.ui.viewmodel.olympics.OlympicsViewModel
+import com.arthurabreu.allthingsandroid.ui.viewmodel.solid.SolidViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module

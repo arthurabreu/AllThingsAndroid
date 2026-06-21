@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.arthurabreu.allthingsandroid.core.designsystem.component.AppScaffold
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.ui.states.DownloadState
@@ -28,62 +29,59 @@ import org.koin.compose.koinInject
 fun DownloadScreen(
     viewModel: DownloadViewModel = koinViewModel()
 ) {
-    val downloadState by viewModel.downloadState.collectAsState()
-    val progressColor by viewModel.progressColor.collectAsState()
-    val showDialog by viewModel.showColorPicker.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val appNavigator: AppNavigator = koinInject()
 
     AppScaffold(title = "Downloads", onBack = { appNavigator.tryNavigateBack() }) { padding ->
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(padding)
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        when (val state = downloadState) {
-            DownloadState.Idle -> {
-                StartDownload(
-                    startDownload = { viewModel.startDownload() },
-                    onColorPick = { viewModel.showColorPicker() }
-                )
-            }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            when (val state = uiState.downloadState) {
+                DownloadState.Idle -> {
+                    StartDownload(
+                        startDownload = { viewModel.startDownload() },
+                        onColorPick = { viewModel.showColorPicker() }
+                    )
+                }
 
-            is DownloadState.Progress -> {
-                DownloadProgress(
-                    progress = state.percentage,
-                    progressColor = progressColor
-                )
-            }
+                is DownloadState.Progress -> {
+                    DownloadProgress(
+                        progress = state.percentage,
+                        progressColor = uiState.progressColor
+                    )
+                }
 
-            is DownloadState.Success -> {
-                StartDownload(
-                    isStartDownload = false,
-                    startDownload = { viewModel.startDownload() },
-                    onColorPick = { viewModel.showColorPicker() }
-                )
-                // Display your data here
-            }
+                is DownloadState.Success -> {
+                    StartDownload(
+                        isStartDownload = false,
+                        startDownload = { viewModel.startDownload() },
+                        onColorPick = { viewModel.showColorPicker() }
+                    )
+                }
 
-            is DownloadState.Error -> {
-                Text("Error: ${state.exception.localizedMessage}", color = Color.Red)
-                Button(onClick = { viewModel.startDownload() }) {
-                    Text("Retry")
+                is DownloadState.Error -> {
+                    Text("Error: ${state.exception.localizedMessage}", color = Color.Red)
+                    Button(onClick = { viewModel.startDownload() }) {
+                        Text("Retry")
+                    }
                 }
             }
-        }
 
-        if (showDialog) {
-            ColorPickerDialog(
-                onColorSelected = { color ->
-                    viewModel.saveColor(color)
-                    viewModel.hideColorPicker()
-                },
-                onDismiss = { viewModel.hideColorPicker() }
-            )
+            if (uiState.showColorPicker) {
+                ColorPickerDialog(
+                    onColorSelected = { color ->
+                        viewModel.saveColor(color)
+                        viewModel.hideColorPicker()
+                    },
+                    onDismiss = { viewModel.hideColorPicker() }
+                )
+            }
         }
-    }
     }
 }
 

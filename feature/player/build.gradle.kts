@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":commonscreens"))
+
     implementation(libs.media3.exoplayer)
     implementation(libs.media3.exoplayer.hls)
     implementation(libs.media3.ui.compose)

@@ -1,6 +1,5 @@
 package com.arthurabreu.allthingsandroid.core.navigation
 
-import SolidScreen
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -43,6 +42,7 @@ import com.arthurabreu.allthingsandroid.ui.screen.download.DownloadScreen
 import com.arthurabreu.allthingsandroid.ui.screen.home.HomeScreen
 import com.arthurabreu.allthingsandroid.ui.screen.login.LoginScreen
 import com.arthurabreu.allthingsandroid.ui.screen.meditation.HomeMeditation
+import com.arthurabreu.allthingsandroid.ui.screen.solid.SolidScreen
 import com.arthurabreu.allthingsandroid.feature.auth.presentation.screen.AuthScreen
 import com.arthurabreu.allthingsandroid.feature.clouddb.presentation.screen.CloudDbScreen
 import com.arthurabreu.allthingsandroid.feature.feed.presentation.screen.FeedScreen

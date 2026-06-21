@@ -43,7 +43,10 @@ feature/meditation/         # Stylized UI demo
 feature/solid/              # SOLID patterns demo
 feature/designprinciple/    # Design pattern demos
 feature/olympics/           # Olympics screen
-commonscreens/              # Legacy shared screens (buttons, lists, text fields) — being phased out
+commonscreens/              # Shared screen-content composables: one package per feature (ui/screens/<feature>/)
+                            # decomposed into small files; consumed by thin app/feature Screen shells.
+                            # Also retains legacy standalone UI-gallery screens (buttons/lists/textfields)
+                            # reachable directly via NavigationGraph.
 ```
 
 ## Key Files

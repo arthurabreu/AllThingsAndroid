@@ -10,6 +10,7 @@ import com.arthurabreu.allthingsandroid.feature.notifications.service.FcmTokenSt
 import com.arthurabreu.allthingsandroid.feature.notifications.worker.LocalNotificationWorker
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import java.util.concurrent.TimeUnit
 
@@ -18,8 +19,9 @@ class NotificationsViewModel(
     private val context: Context,
 ) : ViewModel() {
 
-    val fcmToken: StateFlow<String?> = tokenStore.tokenFlow
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+    val uiState: StateFlow<NotificationsUiState> = tokenStore.tokenFlow
+        .map { token -> NotificationsUiState(fcmToken = token) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), NotificationsUiState())
 
     fun scheduleLocalNotification(delaySeconds: Long = 5L) {
         val data = workDataOf(

@@ -10,20 +10,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +32,8 @@ import com.arthurabreu.allthingsandroid.core.designsystem.component.AppTextButto
 import com.arthurabreu.allthingsandroid.core.designsystem.theme.AppTheme
 import com.arthurabreu.allthingsandroid.core.navigation.AppNavigator
 import com.arthurabreu.allthingsandroid.feature.settings.presentation.viewmodel.SettingsViewModel
-import kotlinx.coroutines.launch
+import com.arthurabreu.commonscreens.ui.composables.shared.ConfirmationDialog
+import com.arthurabreu.commonscreens.ui.composables.shared.ErrorSnackbarEffect
 import org.koin.androidx.compose.koinViewModel
 import org.koin.compose.koinInject
 
@@ -47,18 +44,16 @@ fun SettingsScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
     val appNavigator: AppNavigator = koinInject()
 
     var showSignOutConfirm by remember { mutableStateOf(false) }
     var showDeleteConfirm by remember { mutableStateOf(false) }
 
-    LaunchedEffect(uiState.error) {
-        uiState.error?.let {
-            scope.launch { snackbarHostState.showSnackbar(it) }
-            viewModel.clearError()
-        }
-    }
+    ErrorSnackbarEffect(
+        error = uiState.error,
+        snackbarHostState = snackbarHostState,
+        onClear = viewModel::clearError,
+    )
 
     AppScaffold(
         title = "Settings",
@@ -159,51 +154,30 @@ fun SettingsScreen(
         }
     }
 
-    // Sign Out Confirmation Dialog
     if (showSignOutConfirm) {
-        AlertDialog(
-            onDismissRequest = { showSignOutConfirm = false },
-            title = { Text("Sign Out") },
-            text = { Text("Are you sure you want to sign out?") },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        viewModel.signOut()
-                        showSignOutConfirm = false
-                    }
-                ) {
-                    Text("Sign Out")
-                }
+        ConfirmationDialog(
+            title = "Sign Out",
+            text = "Are you sure you want to sign out?",
+            confirmLabel = "Sign Out",
+            onConfirm = {
+                viewModel.signOut()
+                showSignOutConfirm = false
             },
-            dismissButton = {
-                TextButton(onClick = { showSignOutConfirm = false }) {
-                    Text("Cancel")
-                }
-            },
+            onDismiss = { showSignOutConfirm = false },
         )
     }
 
-    // Delete Account Confirmation Dialog
     if (showDeleteConfirm) {
-        AlertDialog(
-            onDismissRequest = { showDeleteConfirm = false },
-            title = { Text("Delete Account") },
-            text = { Text("This action cannot be undone. Are you sure you want to delete your account?") },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        viewModel.deleteAccount()
-                        showDeleteConfirm = false
-                    }
-                ) {
-                    Text("Delete", color = MaterialTheme.colorScheme.error)
-                }
+        ConfirmationDialog(
+            title = "Delete Account",
+            text = "This action cannot be undone. Are you sure you want to delete your account?",
+            confirmLabel = "Delete",
+            confirmColor = MaterialTheme.colorScheme.error,
+            onConfirm = {
+                viewModel.deleteAccount()
+                showDeleteConfirm = false
             },
-            dismissButton = {
-                TextButton(onClick = { showDeleteConfirm = false }) {
-                    Text("Cancel")
-                }
-            },
+            onDismiss = { showDeleteConfirm = false },
         )
     }
 }

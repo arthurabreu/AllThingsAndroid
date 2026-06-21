@@ -7,6 +7,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":commonscreens"))
+
     // Firebase Auth
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)

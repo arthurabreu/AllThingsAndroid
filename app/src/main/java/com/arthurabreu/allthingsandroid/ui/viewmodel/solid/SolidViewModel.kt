@@ -1,3 +1,5 @@
+package com.arthurabreu.allthingsandroid.ui.viewmodel.solid
+
 import androidx.lifecycle.ViewModel
 import com.arthurabreu.allthingsandroid.data.solid.SolidPrincipleState
 

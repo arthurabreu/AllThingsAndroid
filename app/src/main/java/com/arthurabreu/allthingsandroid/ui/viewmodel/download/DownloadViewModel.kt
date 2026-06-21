@@ -7,57 +7,34 @@ import com.arthurabreu.allthingsandroid.ui.states.DownloadState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class DownloadViewModel(
     //private val getLargeDataUseCase: GetLargeDataUseCase,
 ) : ViewModel() {
-    private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.Idle)
-    val downloadState: StateFlow<DownloadState> = _downloadState
-
-    private val _progressColor = MutableStateFlow(Color.Blue)
-    val progressColor: StateFlow<Color> = _progressColor
-
-    private val _showColorPicker = MutableStateFlow(false)
-    val showColorPicker: StateFlow<Boolean> = _showColorPicker
+    private val _uiState = MutableStateFlow(DownloadUiState())
+    val uiState: StateFlow<DownloadUiState> = _uiState.asStateFlow()
 
     fun startDownload() {
         viewModelScope.launch {
-            // auto fill download values
             for (i in 0..100) {
-                _downloadState.value = DownloadState.Progress(i.toFloat())
+                _uiState.value = _uiState.value.copy(downloadState = DownloadState.Progress(i.toFloat()))
                 delay(50)
             }
-
-            // Manually test and set download values
-//            _downloadState.value = DownloadState.Progress(0f)
-//            delay(500)
-//            _downloadState.value = DownloadState.Progress(25f)
-//            delay(1000)
-//            _downloadState.value = DownloadState.Progress(50f)
-//            delay(1000)
-//            _downloadState.value = DownloadState.Progress(75f)
-//            delay(1000)
-//            _downloadState.value = DownloadState.Progress(100f)
-
-            _downloadState.value = DownloadState.Success(listOf())
-//            getLargeDataUseCase().collect { state ->
-//                _downloadState.value = state
-//            }
+            _uiState.value = _uiState.value.copy(downloadState = DownloadState.Success(listOf()))
         }
     }
 
     fun saveColor(color: Color) {
-        viewModelScope.launch {
-            _progressColor.value = color
-        }
+        _uiState.value = _uiState.value.copy(progressColor = color)
     }
 
     fun showColorPicker() {
-        _showColorPicker.value = true
+        _uiState.value = _uiState.value.copy(showColorPicker = true)
     }
 
     fun hideColorPicker() {
-        _showColorPicker.value = false
+        _uiState.value = _uiState.value.copy(showColorPicker = false)
     }
 }
