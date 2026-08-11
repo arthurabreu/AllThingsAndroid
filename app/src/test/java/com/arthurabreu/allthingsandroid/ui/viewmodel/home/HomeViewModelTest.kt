@@ -169,4 +169,10 @@ class HomeViewModelTest : BaseViewModelTest() {
         // Then
         verify { mockNavigator.tryNavigateTo(ApiShowcaseFeature.JsonPlaceHolder.route) }
     }
+    @Test
+    fun openShopNavigatesToPortfolioShop() = runTest {
+        every { mockNavigator.tryNavigateTo(any()) } just Runs
+        viewModel.open("shop")
+        verify { mockNavigator.tryNavigateTo(com.arthurabreu.allthingsandroid.core.navigation.destinations.PortfolioFeature.Shop.route) }
+    }
 }

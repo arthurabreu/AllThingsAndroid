@@ -38,7 +38,7 @@ val networkModule = module {
             install(ContentNegotiation) { // For JSON parsing
                 json(
                     contentType = ContentType.Application.Json,
-                    json = Json { ignoreUnknownKeys = true } // Same as your sample!
+                    json = Json { ignoreUnknownKeys = true }
                 )
             }
             install(Logging) { // Optional: Logs network requests/responses

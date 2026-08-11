@@ -4,6 +4,7 @@ import android.app.Application
 import com.arthurabreu.allthingsandroid.core.di.appModule
 import com.arthurabreu.allthingsandroid.core.di.networkModule
 import com.arthurabreu.allthingsandroid.core.di.persistenceModule
+import com.arthurabreu.allthingsandroid.core.di.portfolioModule
 import com.arthurabreu.allthingsandroid.core.di.viewModelsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,7 +21,8 @@ class App : Application(){
                 appModule,
                 viewModelsModule,
                 networkModule,
-                persistenceModule
+                persistenceModule,
+                portfolioModule,
             )
         }
     }

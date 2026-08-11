@@ -53,6 +53,23 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+
+    flavorDimensions += "backend"
+    productFlavors {
+        create("demo") {
+            dimension = "backend"
+            applicationIdSuffix = ".demo"
+            versionNameSuffix = "-demo"
+            buildConfigField("Boolean", "USE_LIVE_BACKEND", "false")
+            manifestPlaceholders["MAPS_API_KEY"] = (project.findProperty("MAPS_API_KEY") as String?) ?: "demo"
+        }
+        create("live") {
+            dimension = "backend"
+            buildConfigField("Boolean", "USE_LIVE_BACKEND", "true")
+            manifestPlaceholders["MAPS_API_KEY"] = (project.findProperty("MAPS_API_KEY") as String?) ?: "demo"
+        }
     }
 
     tasks.withType<Test> {
@@ -83,6 +100,25 @@ android {
 dependencies {
 
     implementation(project(":commonscreens"))
+    implementation(project(":core:common"))
+    implementation(project(":core:model"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:network"))
+    implementation(project(":core:database"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:lab"))
+    implementation(project(":feature:persistence"))
+    implementation(project(":feature:lists"))
+    implementation(project(":feature:shop"))
+    implementation(project(":feature:maps"))
+    implementation(project(":feature:firebase"))
+    implementation(project(":feature:chat"))
+    implementation(project(":feature:voice"))
+    implementation(project(":feature:feedback"))
+    debugImplementation(libs.leakcanary.android)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

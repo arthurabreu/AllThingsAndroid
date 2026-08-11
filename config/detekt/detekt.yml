@@ -1,0 +1,6 @@
+build:
+  maxIssues: 0
+complexity:
+  active: true
+style:
+  active: true
