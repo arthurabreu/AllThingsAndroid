@@ -36,7 +36,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DataDao {
     @Query("SELECT * FROM data_table")
-    fun getData(): Flow<DataEntity?> // Changed to nullable to handle empty table
+    fun getData(): Flow<DataEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertData(data: DataEntity)

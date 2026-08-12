@@ -1,0 +1,21 @@
+---
+description: Official Android skills, Koin/Ktor stack, git and quality bar
+alwaysApply: true
+---
+
+# AllThingsAndroid agent rules
+
+- Read the matching official skill in `.agents/skills/android` before coding that area.
+- DI is Koin (one module per feature). Network is Ktor. Do not add Hilt or Retrofit.
+- Never commit to `master`. Conventional Commits. Never add `Co-authored-by` or AI attribution.
+- After finishing a work slice, stop so the user can review the diff. Commit only when they ask.
+- No `android.util.Log`. Inject the project logger.
+- New screen = Screen + ViewModel + state + fake + unit test + Compose UI test.
+- `demo` flavor must run without secrets.
+
+```kotlin
+// BAD
+android.util.Log.d("Shop", "added")
+// GOOD
+logger.d("Cart item added")
+```

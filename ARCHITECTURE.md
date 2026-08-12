@@ -1,120 +1,50 @@
-# Architecture Overview
-[Back to README](./README.md) • This document is summarized in the README.
+# Architecture
 
-This document provides a high-level overview of the proposed architecture for the Android application contained in this repository. It follows a modular, clean architecture inspired layering to promote testability, separation of concerns, and scalability.
+Layered clean architecture. DI is **Koin**. Network is **Ktor**. No Hilt. No Retrofit.
 
 ## Layers
 
-- UI Layer (Compose / XML Views): Renders state and delegates user intents.
-- Presentation Layer (ViewModel + UI State / MVI reducers): Coordinates UI logic, exposes immutable state, triggers use cases.
-- Domain Layer (Use Cases + Entities + Repository Interfaces): Business rules, pure Kotlin, no Android framework dependencies.
-- Data Layer (Repository Implementations + Data Sources): Orchestrates data from network, cache, database, and device services.
-- Platform & Services: Android system services, permissions, notifications, WorkManager, etc.
-- External Services: REST APIs, Firebase, Analytics, Crash Reporting.
-
-## Mermaid Diagram
+- **UI** — Compose screens, immutable state, user intents.
+- **Presentation** — ViewModels expose `StateFlow`.
+- **Domain** — Pure Kotlin use cases (`:core:domain`).
+- **Data** — Repositories, Room (`:core:database`), Ktor (`:core:network`).
+- **App** — Nav host, Koin graph, flavors `demo` / `live`.
 
 ```mermaid
 flowchart TB
-    %% Subgraphs / Layers
-    subgraph UI_Layer[UI Layer]
-        VIEWS[Composable Screens / Fragments]
-    end
-
-    subgraph Presentation_Layer[Presentation Layer]
-        VM[ViewModels or MVI Controllers]
-        STATE[UI State Models]
-    end
-
-    subgraph Domain_Layer[Domain Layer]
-        USECASES[Use Cases]
-        ENTITIES[Domain Entities]
-        REPO_IF[Repository Interfaces]
-    end
-
-    subgraph Data_Layer[Data Layer]
-        REPO_IMPL[Repository Implementations]
-        NET[Network Source: Retrofit or Ktor]
-        DB[Local DB: Room]
-        CACHE[In-Memory Cache]
-        PREFS[Preferences and DataStore]
-    end
-
-    subgraph Platform_Services[Platform & Services]
-        WORK[WorkManager]
-        NOTIF[Notifications]
-        PERMS[Permissions API]
-        SENS[Sensors / Hardware]
-    end
-
-    subgraph External_Services[External Services]
-        API[REST APIs]
-        FIREBASE[Firebase Services]
-        CRASH[Crash Reporting]
-        ANALYTICS[Analytics SDK]
-    end
-
-    %% Primary Flow
-    VIEWS --> VM
-    VM --> STATE
-    VM --> USECASES
-    USECASES --> REPO_IF
-    REPO_IF <-- REPO_IMPL
-
-    %% Data Sources
-    REPO_IMPL --> NET
-    REPO_IMPL --> DB
-    REPO_IMPL --> CACHE
-    REPO_IMPL --> PREFS
-
-    %% Platform integrations
-    REPO_IMPL --> WORK
-    REPO_IMPL --> NOTIF
-    REPO_IMPL --> PERMS
-    REPO_IMPL --> SENS
-
-    %% External interactions
-    NET --> API
-    NET --> FIREBASE
-
-    WORK --> API
-    NOTIF --> FIREBASE
-    FIREBASE --> ANALYTICS
-    FIREBASE --> CRASH
-    ANALYTICS --> FIREBASE
+  UI[Compose screens] --> VM[ViewModels]
+  VM --> UC[Use cases]
+  UC --> REPO[Repositories]
+  REPO --> Ktor[Ktor HttpClient / WebSockets]
+  REPO --> Room[Room + migrations]
 ```
 
-## Data Flow Summary
+## Koin
 
-1. User interacts with UI components, generating events.
-2. ViewModel (or MVI reducer) interprets events, invokes corresponding Use Case.
-3. Use Case communicates with Repository Interface.
-4. Repository Implementation selects appropriate data source strategy (cache-first, network-then-persist, etc.).
-5. Data sources talk to external APIs, local storage, preferences, or platform services.
-6. Results propagate upward: Repository → Use Case → ViewModel updates immutable state → UI re-composes.
+- `appModule`, `viewModelsModule`, `networkModule`, `persistenceModule` — existing app.
+- `portfolioModule` — catalog + product features, `AppDispatchers`, `VoiceTransport`, shared `HttpClient`.
 
-## Error & State Handling
+## Room
 
-- Use sealed classes / Result wrappers for success, loading, and error.
-- Map low-level errors to domain-friendly errors centrally.
-- ViewModel exposes `StateFlow` / immutable UI state objects.
+`PortfolioDatabase` version **3**, `exportSchema = true`, schemas under `core/database/schemas/`.
 
-## Dependency Injection
+- v1 → v2: `MIGRATION_1_2` (pinned column)
+- v2 → v3: `MIGRATION_2_3` (headline rename + `updated_at`)
 
-Prefer Hilt (official) or Koin: inject repositories, use cases, platform abstractions.
+## Navigation
 
-## Testing Strategy
+Existing Channel + `AppNavigator` + feature destinations. New product routes live in `PortfolioFeature`. Navigation 3 skill is vendored for the next host migration.
 
-- Domain: Pure unit tests (no Android dependencies).
-- Data: Repository tests with fake sources; network via MockWebServer; Room instrumented tests.
-- Presentation: ViewModel coroutine tests (TestDispatcher + Turbine).
-- UI: Compose tests (semantics), optional screenshot and accessibility checks.
+## Flavors
 
-## Next Steps
+| Flavor | Backend |
+| --- | --- |
+| `demo` | Fakes / local echo. Runs without keys. |
+| `live` | Real Maps / Firebase when `local.properties` + Play config exist. |
 
-- Modularize (:app, :core:common, :domain, :data, :feature-xyz).
-- Introduce version catalogs, explicit API boundaries.
-- Add structured logging, performance metrics, crash + trace correlation.
-- Consider feature flags & experiment framework.
+## Testing
 
----
+- JUnit 5 + MockK on JVM modules and feature ViewModels.
+- Compose UI tests with `testTag` on each new screen.
+- JaCoCo gate on `:core:domain` (90%).
+- CI: unit tests + `lintDemoDebug` + `assembleDemoDebug`.

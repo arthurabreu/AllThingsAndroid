@@ -1,16 +1,60 @@
-*.iml
-.gradle
-/local.properties
-/.idea/
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+**/build/
+.kotlin/
+
+# Gradle files / caches
+.gradle/
+.gradle-*/
+**/gradle-home*/
+.gradletasknamecache
+
+# Local configuration / secrets
 local.properties
+*.keystore
+!debug.keystore
+
+# Android Studio / IntelliJ
+*.iml
+.idea/
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+captures/
+.externalNativeBuild/
+.cxx/
+*.hprof
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Native / NDK
+obj/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Agents / tooling clones inside the tree
+.agents/skills/android/.git/

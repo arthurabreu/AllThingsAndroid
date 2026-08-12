@@ -38,7 +38,7 @@ class ApiServiceKtorImpl(
             lastRawResponse = e.response.bodyAsText()
             throw e
         } catch (e: Exception) {
-            lastRawResponse = ""  // Clear previous response
+            lastRawResponse = ""
             throw e
         }
 

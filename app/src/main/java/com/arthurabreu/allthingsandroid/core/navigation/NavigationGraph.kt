@@ -26,6 +26,7 @@ import com.arthurabreu.allthingsandroid.core.navigation.destinations.ListsFeatur
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.LoginFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.MeditationFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.OlympicsFeature
+import com.arthurabreu.allthingsandroid.core.navigation.destinations.PortfolioFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.ProfileFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SettingsFeature
 import com.arthurabreu.allthingsandroid.core.navigation.destinations.SolidFeature
@@ -41,6 +42,17 @@ import com.arthurabreu.allthingsandroid.ui.screen.olympics.OlympicsScreen
 import com.arthurabreu.allthingsandroid.ui.screen.profile.ProfileScreen
 import com.arthurabreu.allthingsandroid.ui.screen.settings.SettingsScreen
 import com.arthurabreu.allthingsandroid.ui.viewmodel.main.MainViewModel
+
+import com.arthurabreu.allthingsandroid.feature.chat.ChatScreen
+import com.arthurabreu.allthingsandroid.feature.feedback.FeedbackScreen
+import com.arthurabreu.allthingsandroid.feature.firebase.FirebaseScreen
+import com.arthurabreu.allthingsandroid.feature.lab.LeaksScreen
+import com.arthurabreu.allthingsandroid.feature.lists.ListsScreen as PagedListsScreen
+import com.arthurabreu.allthingsandroid.feature.maps.MapsScreen
+import com.arthurabreu.allthingsandroid.feature.persistence.PersistenceScreen
+import com.arthurabreu.allthingsandroid.feature.shop.ShopScreen
+import com.arthurabreu.allthingsandroid.feature.voice.VoiceScreen
+import org.koin.androidx.compose.koinViewModel
 import com.arthurabreu.commonscreens.ui.screens.buttons.ButtonScreen
 import com.arthurabreu.commonscreens.ui.screens.lists.ListsScreen
 import com.arthurabreu.commonscreens.ui.screens.login.LoginScreenFake
@@ -112,6 +124,34 @@ fun NavigationGraph(viewModel: MainViewModel) {
                 }
                 composable(OlympicsFeature.OlympicsFeature.fullRoute)  {
                     OlympicsScreen()
+                }
+
+                composable(PortfolioFeature.Shop.fullRoute) {
+                    ShopScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Lists.fullRoute) {
+                    PagedListsScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Maps.fullRoute) {
+                    MapsScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Chat.fullRoute) {
+                    ChatScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Voice.fullRoute) {
+                    VoiceScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Firebase.fullRoute) {
+                    FirebaseScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Persistence.fullRoute) {
+                    PersistenceScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Leaks.fullRoute) {
+                    LeaksScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Feedback.fullRoute) {
+                    FeedbackScreen(koinViewModel(), onBack = { navController.popBackStack() })
                 }
 
             }
