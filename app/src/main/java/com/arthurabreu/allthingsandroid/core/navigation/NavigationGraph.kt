@@ -126,15 +126,33 @@ fun NavigationGraph(viewModel: MainViewModel) {
                     OlympicsScreen()
                 }
 
-                composable(PortfolioFeature.Shop.fullRoute) { ShopScreen(koinViewModel()) }
-                composable(PortfolioFeature.Lists.fullRoute) { PagedListsScreen(koinViewModel()) }
-                composable(PortfolioFeature.Maps.fullRoute) { MapsScreen(koinViewModel()) }
-                composable(PortfolioFeature.Chat.fullRoute) { ChatScreen(koinViewModel()) }
-                composable(PortfolioFeature.Voice.fullRoute) { VoiceScreen(koinViewModel()) }
-                composable(PortfolioFeature.Firebase.fullRoute) { FirebaseScreen(koinViewModel()) }
-                composable(PortfolioFeature.Persistence.fullRoute) { PersistenceScreen(koinViewModel()) }
-                composable(PortfolioFeature.Leaks.fullRoute) { LeaksScreen(koinViewModel()) }
-                composable(PortfolioFeature.Feedback.fullRoute) { FeedbackScreen(koinViewModel()) }
+                composable(PortfolioFeature.Shop.fullRoute) {
+                    ShopScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Lists.fullRoute) {
+                    PagedListsScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Maps.fullRoute) {
+                    MapsScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Chat.fullRoute) {
+                    ChatScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Voice.fullRoute) {
+                    VoiceScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Firebase.fullRoute) {
+                    FirebaseScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Persistence.fullRoute) {
+                    PersistenceScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Leaks.fullRoute) {
+                    LeaksScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
+                composable(PortfolioFeature.Feedback.fullRoute) {
+                    FeedbackScreen(koinViewModel(), onBack = { navController.popBackStack() })
+                }
 
             }
         }

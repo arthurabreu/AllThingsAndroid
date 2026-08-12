@@ -1,77 +1,91 @@
 package com.arthurabreu.allthingsandroid.feature.lists
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
-import androidx.compose.runtime.collectAsState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
-import com.arthurabreu.allthingsandroid.core.domain.ListFilter
-import com.arthurabreu.allthingsandroid.core.domain.SeedRows
-import com.arthurabreu.allthingsandroid.core.model.ListRow
-
-data class ListsState(
-    val query: String = "",
-    val visible: List<ListRow> = emptyList(),
-    val error: String? = null,
-)
-
-class ListsViewModel(
-    private val filter: ListFilter = ListFilter(),
-    private val seed: List<ListRow> = SeedRows.generate(),
-) : ViewModel() {
-    private val _state = MutableStateFlow(ListsState(visible = seed))
-    val state: StateFlow<ListsState> = _state.asStateFlow()
-
-    fun onQuery(value: String) {
-        _state.update { it.copy(query = value, visible = filter.apply(seed, value), error = null) }
-    }
-
-    fun fail() { _state.update { it.copy(error = "Network unavailable", visible = emptyList()) } }
-    fun retry() { onQuery(_state.value.query) }
-}
-
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListsScreen(viewModel: ListsViewModel, onBack: () -> Unit = {}) {
     val state by viewModel.state.collectAsState()
-    Column(
-        Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(16.dp).testTag("lists-screen"),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Text("Lists", style = MaterialTheme.typography.headlineSmall)
 
-        androidx.compose.material3.OutlinedTextField(
-            value = state.query,
-            onValueChange = viewModel::onQuery,
-            label = { Text("Search") },
-            modifier = Modifier.testTag("lists-search"),
-        )
-        if (state.error != null) {
-            Text(state.error!!, modifier = Modifier.testTag("lists-error"))
-            Button(onClick = viewModel::retry) { Text("Retry") }
-        } else if (state.visible.isEmpty()) {
-            Text("Empty", modifier = Modifier.testTag("lists-empty"))
-        } else {
-            state.visible.forEach { Text("${it.title} — ${it.body}") }
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag("lists-screen"),
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        text = "Paged lists",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                },
+                navigationIcon = { ListsBackIcon(onBack) },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                ),
+            )
+        },
+        bottomBar = {
+            if (state.error == null) {
+                ListsPaginationBar(
+                    state = state,
+                    onPrevious = viewModel::previousPage,
+                    onNext = viewModel::nextPage,
+                )
+            }
+        },
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+        ) {
+            ListsSearchAndLayoutSwitcher(
+                query = state.query,
+                layout = state.layout,
+                onQuery = viewModel::onQuery,
+                onLayout = viewModel::setLayout,
+                onSimulateError = viewModel::fail,
+            )
+
+            when {
+                state.error != null -> {
+                    ListsErrorState(
+                        message = state.error.orEmpty(),
+                        onRetry = viewModel::retry,
+                    )
+                }
+                state.visible.isEmpty() -> ListsEmptyState(query = state.query)
+                state.layout == ListsLayout.Inbox -> {
+                    ListsInboxLayout(
+                        rows = state.visible,
+                        contentPadding = PaddingValues(bottom = 8.dp),
+                    )
+                }
+                else -> {
+                    ListsBoardLayout(
+                        rows = state.visible,
+                        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 8.dp),
+                    )
+                }
+            }
         }
-        Button(onClick = viewModel::fail) { Text("Simulate error") }
-
-        Button(onClick = onBack) { Text("Back") }
     }
 }
