@@ -38,4 +38,14 @@ class ShopViewModelTest {
         assertEquals(1, vm.state.value.itemCount)
         assertEquals(499, vm.state.value.totalCents)
     }
+
+    @Test
+    fun clearLineRemovesProduct() {
+        val vm = ShopViewModel()
+        vm.add("sku-lager")
+        vm.add("sku-lager")
+        vm.clearLine("sku-lager")
+        assertTrue(vm.state.value.lines.isEmpty())
+        assertEquals(0, vm.state.value.totalCents)
+    }
 }

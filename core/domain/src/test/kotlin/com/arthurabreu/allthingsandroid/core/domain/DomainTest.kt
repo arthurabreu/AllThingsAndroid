@@ -36,6 +36,15 @@ class DomainTest {
     }
 
     @Test
+    fun clearLineRemovesEntireLine() {
+        val product = catalog.byId("sku-lager")!!
+        var lines = (cart.add(emptyList(), product) as AppResult.Ok).value
+        lines = (cart.add(lines, product) as AppResult.Ok).value
+        assertEquals(2, lines.single().quantity)
+        assertTrue(cart.clearLine(lines, product.id).isEmpty())
+    }
+
+    @Test
     fun listFilterAndPaging() {
         val rows = SeedRows.generate(25)
         assertEquals(3, filter.apply(rows, "blocked").size)

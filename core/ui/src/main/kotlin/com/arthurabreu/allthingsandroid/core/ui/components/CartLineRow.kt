@@ -6,6 +6,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,12 +24,13 @@ import androidx.compose.ui.unit.dp
 fun CartLineRow(
     name: String,
     unitPriceLabel: String,
-    lineTotalLabel: String,
     quantity: Int,
     @DrawableRes iconRes: Int,
     onIncrement: () -> Unit,
     onDecrement: () -> Unit,
+    onRemove: () -> Unit,
     modifier: Modifier = Modifier,
+    subtitle: String? = null,
     incrementEnabled: Boolean = true,
     avatarContainerColor: Color = MaterialTheme.colorScheme.secondaryContainer,
     avatarIconTint: Color = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -33,7 +39,7 @@ fun CartLineRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .padding(horizontal = 16.dp, vertical = 12.dp)
             .testTag(testTagPrefix),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -43,17 +49,28 @@ fun CartLineRow(
             contentDescription = name,
             containerColor = avatarContainerColor,
             iconTint = avatarIconTint,
-            size = 40.dp,
+            size = 48.dp,
         )
         Column(
             modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(2.dp),
         ) {
-            Text(name, style = MaterialTheme.typography.titleSmall)
             Text(
-                unitPriceLabel,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                text = name,
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.onSurface,
+            )
+            if (subtitle != null) {
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            Text(
+                text = unitPriceLabel,
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
             )
         }
         QuantityStepper(
@@ -63,10 +80,17 @@ fun CartLineRow(
             incrementEnabled = incrementEnabled,
             testTagPrefix = "$testTagPrefix-qty",
         )
-        Text(
-            lineTotalLabel,
-            style = MaterialTheme.typography.titleSmall,
-            modifier = Modifier.padding(start = 4.dp),
-        )
+        IconButton(
+            onClick = onRemove,
+            modifier = Modifier
+                .size(40.dp)
+                .testTag("$testTagPrefix-remove"),
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Delete,
+                contentDescription = "Remove from cart",
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
     }
 }

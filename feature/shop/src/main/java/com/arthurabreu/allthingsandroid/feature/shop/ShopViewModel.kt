@@ -42,6 +42,11 @@ class ShopViewModel(
         _state.update { it.copy(lines = lines, totalCents = cart.totalCents(lines), message = null) }
     }
 
+    fun clearLine(id: String) {
+        val lines = cart.clearLine(_state.value.lines, id)
+        _state.update { it.copy(lines = lines, totalCents = cart.totalCents(lines), message = null) }
+    }
+
     fun checkout() {
         if (_state.value.lines.isEmpty()) {
             _state.update { it.copy(message = "Cart is empty") }

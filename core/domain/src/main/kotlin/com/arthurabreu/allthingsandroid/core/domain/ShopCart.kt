@@ -37,5 +37,8 @@ class CartCalculator {
             }
         }
 
+    fun clearLine(lines: List<CartLine>, productId: String): List<CartLine> =
+        lines.filterNot { it.product.id == productId }
+
     fun totalCents(lines: List<CartLine>): Int = lines.sumOf { it.lineTotalCents }
 }
