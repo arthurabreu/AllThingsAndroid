@@ -1,9 +1,8 @@
 package com.arthurabreu.allthingsandroid.feature.shop
 
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
 class ShopViewModelTest {
     @Test
@@ -11,6 +10,7 @@ class ShopViewModelTest {
         val vm = ShopViewModel()
         vm.add("sku-lager")
         assertEquals(499, vm.state.value.totalCents)
+        assertEquals(1, vm.state.value.itemCount)
     }
 
     @Test
@@ -28,5 +28,14 @@ class ShopViewModelTest {
         assertTrue(vm.state.value.lines.isEmpty())
         assertEquals("Order placed", vm.state.value.message)
     }
-}
 
+    @Test
+    fun removeDecrementsQuantity() {
+        val vm = ShopViewModel()
+        vm.add("sku-lager")
+        vm.add("sku-lager")
+        vm.remove("sku-lager")
+        assertEquals(1, vm.state.value.itemCount)
+        assertEquals(499, vm.state.value.totalCents)
+    }
+}
